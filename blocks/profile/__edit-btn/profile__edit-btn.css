@@ -6,17 +6,13 @@
 }
 
 .profile__edit-btn::before {
-    content: url("../../../images/edit.svg");
-    
+    content: url("../../../images/edit.svg"); 
 }
-
 
 @media screen and (max-width: 968px){
     .profile__edit-btn {  
         height: 18px;
-        width: 18px;
-        vertical-align: auto;
-        
+        width: 18px;    
     }
     .profile__edit-btn::before {
         content: url("../../../images/edit-mobile.svg");  
