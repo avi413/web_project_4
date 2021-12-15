@@ -15,6 +15,26 @@ The way you'll do this at work is by exporting images directly from Figma — we
 
 Have fun with JavaScript!
 
+**Functionality description**
+
+* Use JS to implement lister to a button and perform a callback function on events.
+* Using BEM methodologies
+
+**Technologies used**
+
+* HTML
+* JS
+* CSS
+
+
 **Demo**
 
 * [Link to the project in Demo](https://avi413.github.io/web_project_4/)
+
+## Running local
+
+To run the site loacly, run the following command
+
+```bash
+  git clone git@github.com:avi413/web_project_4.git
+```
