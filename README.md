@@ -15,6 +15,6 @@ The way you'll do this at work is by exporting images directly from Figma — we
 
 Have fun with JavaScript!
 
-** Demo **
+**Demo**
 
 * [Link to the project in Demo](https://avi413.github.io/web_project_4/)
