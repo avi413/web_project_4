@@ -6,3 +6,7 @@
 .galery__item-like-btn::before {
     content: url("../../../images/like.svg");
 }
+
+.galery__item-like-btn:hover {
+    opacity: .5;
+}
