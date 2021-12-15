@@ -6,7 +6,7 @@
 }
 
 .profile__edit-btn::before {
-    content: url("/../images/edit.svg");
+    content: url("../../../images/edit.svg");
     
 }
 
@@ -19,6 +19,6 @@
         
     }
     .profile__edit-btn::before {
-        content: url("/images/edit-mobile.svg");  
+        content: url("../../../images/edit-mobile.svg");  
     }
 }

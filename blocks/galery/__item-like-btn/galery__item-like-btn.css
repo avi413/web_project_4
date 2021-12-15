@@ -4,5 +4,5 @@
 }
 
 .galery__item-like-btn::before {
-    content: url(/images/like.svg);
+    content: url("../../../images/like.svg");
 }

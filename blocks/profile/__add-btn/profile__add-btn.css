@@ -6,7 +6,7 @@
 }
 
 .profile__add-btn::before {
-    content: url("/../images/plus.svg");
+    content: url("../../../images/plus.svg");
 }
 
 @media screen and (max-width: 968px){
