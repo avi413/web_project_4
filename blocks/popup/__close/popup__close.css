@@ -1,0 +1,19 @@
+  .popup__close {
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    transform: translate(220px, -50%);
+    border:none;
+    background: none;
+  }
+
+  .popup__close::before {
+    content: url("/images/Close-Icon.svg");
+  }
+
+  @media screen and (max-width: 640px){
+    .popup__close {
+      top: 17%;
+      transform: translate(140px, -50%);
+    }
+  }

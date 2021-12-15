@@ -1,0 +1,12 @@
+.profile__about-me {
+    color: #fff;
+    margin: 0;
+    grid-area: about;
+}
+
+@media screen and (max-width: 968px){
+    .profile__about-me  {
+        text-align: center;
+        margin-bottom: 36px;
+    }
+}

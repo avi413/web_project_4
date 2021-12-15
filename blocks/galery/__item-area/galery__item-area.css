@@ -1,0 +1,5 @@
+.galery__item-area {
+    display: grid;
+    max-width: 282px;
+    margin: auto;
+}

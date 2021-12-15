@@ -1,0 +1,8 @@
+.galery__item-like-btn {
+    width: 21px;
+    height: 19px;
+}
+
+.galery__item-like-btn::before {
+    content: url(/images/like.svg);
+}

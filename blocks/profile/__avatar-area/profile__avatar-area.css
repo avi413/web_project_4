@@ -1,0 +1,13 @@
+.profile__avatar-area {
+    height: 127.5px;
+    width: 168.75px;
+    display: flex;
+    justify-content: center;    
+}
+
+
+@media screen and (max-width: 968px){
+    .profile__avatar-area {
+        padding-bottom: 26.25px;
+    }
+}
