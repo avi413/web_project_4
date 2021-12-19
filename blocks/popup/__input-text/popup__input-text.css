@@ -1,14 +1,29 @@
 .popup__input-text {
     height: 14px;
-    left: 461px;
-    top: 363px;
-    font-family: Inter;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
     color: #000;
     border-width: 0 0 2px;
     border-color: rgba(0, 0, 0, .2);
-    padding-bottom: 15px;
+    padding-bottom: 13px;
     outline: 0;
+    width: 100%;
+    
   }
+
+  .popup__input-text:nth-child(1) {
+    padding-top: 54px;
+  }
+
+  .popup__input-text:nth-child(2) {
+    padding-top: 30px;
+  }
+
+  
+  @media screen and (max-width: 640px){
+    .popup__input-text  {
+      padding-bottom: 9px;
+    }
+  }
+  

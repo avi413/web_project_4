@@ -8,14 +8,16 @@
     <title>Around The U.S.</title>
 </head>
 <body class="body">
-    <div class="popup popup_closed">
-        <button class="popup__close button"></button>
-        <form action="" class="popup__container">
+    <div class="popup popup_state_closed">
+        <button class="popup__close button button_opacity-60"></button>
+        <div class="popup__container">
             <h2 class="popup__title">Edit profile</h2>
-            <input class="popup__input-text name" type="text" placeholder="Name">
-            <input class="popup__input-text aboutMe" type="text" placeholder="About me">
-            <input type="submit" class="popup__input-btn button" value="Save">
-        </form>
+            <form action="" class="popup__form" name="profile-form">
+                <input class="popup__input-text popup__input-text_type_name" type="text" placeholder="Name" name="profile-name">
+                <input class="popup__input-text popup__input-text_type_about-me" type="text" placeholder="About me" name="profile-about-me">
+                <input type="submit" class="popup__input-btn button button_opacity-80" value="Save">
+            </form>
+        </div>
     </div>
     <div class="page">
 
@@ -25,72 +27,58 @@
         <main class="content">
             <section class="profile">
                 <div class="profile__info">
-                     <div class="profile__avatar-area">
-                         <img src="./images/jacques-cousteau.jpg" alt="jacques cousteau" class="profile__avatar">
-                     </div>
+                     <img src="./images/jacques-cousteau.jpg" alt="jacques cousteau" class="profile__avatar">
                      <div class="profile__text">
-                         <p class="profile__name" >Jacques Cousteau</p>
+                         <h2 class="profile__name" >Jacques Cousteau</h2>
                          <p class="profile__about-me" >Explorer</p>
-                         <button  aria-label="edit profile" type="button"class="profile__edit-btn button button__clear"></button>
+                         <button  aria-label="edit profile" type="button"class="profile__edit-btn button button__clear button_opacity-60 button_border_sm"></button>
                      </div>
                     
                  </div>
-                 <button  aria-label="add profile" ype="button" class="profile__add-btn button button__clear"></button>
+                 <button  aria-label="add profile" ype="button" class="profile__add-btn button button__clear button_border_m"></button>
              </section>
              <section class="galery">
                  <ul class="galery__list">
                      <li class="galery__item">
-                         <div class="galery__item-area">
                              <img src="./images/yosemite-valley.png" alt="Yosemite Valley" class="galery__item-img">
                              <div class="galery__item-footer">
-                                 <p class="galery__item-name">Yosemite Valley</p>
+                                 <h2 class="galery__item-name">Yosemite Valley</h2>
                                  <button aria-label="like button" type="button" class="galery__item-like-btn button button__clear"></button>
                              </div>
-                         </div>
                      </li>
                      <li class="galery__item">
-                         <div class="galery__item-area">
                              <img src="./images/lake-louise.png" alt="Lake Louise" class="galery__item-img">
                              <div class="galery__item-footer">
-                                 <p class="galery__item-name">Lake Louise</p>
+                                 <h2 class="galery__item-name">Lake Louise</h2>
                                  <button aria-label="like button" type="button" class="galery__item-like-btn button button__clear"></button>
-                             </div>
-                         </div>
+                             </div> 
                      </li>
                      <li class="galery__item">
-                         <div class="galery__item-area">
                              <img src="./images/bald-mountains.png" alt="Bald Mountains" class="galery__item-img">
                              <div class="galery__item-footer">
-                                 <p class="galery__item-name">Bald Mountains</p>
+                                 <h2 class="galery__item-name">Bald Mountains</h2>
                                  <button aria-label="like button" type="button" class="galery__item-like-btn button button__clear"></button>
-                             </div>
                          </div>
                      </li>
                      <li class="galery__item">
-                         <div class="galery__item-area">
                              <img src="./images/latemar.png" alt="latemar" class="galery__item-img">
                              <div class="galery__item-footer">
-                                 <p class="galery__item-name">Latemar</p>
+                                 <h2 class="galery__item-name">Latemar</h2>
                                  <button aria-label="like button" type="button" class="galery__item-like-btn button button__clear"></button>
-                             </div>
                          </div>
                      </li>
                      <li class="galery__item">
-                         <div class="galery__item-area">
                              <img src="./images/vanoise-national.png" alt="Vanoise Nationa" class="galery__item-img">
                              <div class="galery__item-footer">
-                                 <p class="galery__item-name">Vanoise National</p>
+                                 <h2 class="galery__item-name">Vanoise National</h2>
                                  <button aria-label="like button" type="button" class="galery__item-like-btn button button__clear"></button>
-                             </div>
                          </div>
                      </li>
                      <li class="galery__item">
-                         <div class="galery__item-area">
                              <img src="./images/lago-di-braies.png" alt="Lago di Braies" class="galery__item-img">
                              <div class="galery__item-footer">
-                                 <p class="galery__item-name">Lago di Braies</p>
+                                 <h2 class="galery__item-name">Lago di Braies</h2>
                                  <button aria-label="like button" type="button" class="galery__item-like-btn button button__clear"></button>
-                             </div>
                          </div>
                      </li>
                  </ul>

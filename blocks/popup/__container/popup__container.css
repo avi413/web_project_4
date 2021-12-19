@@ -1,7 +1,5 @@
 .popup__container {
   display: grid;
-  gap:30px;
-  position: fixed;
   z-index: 1; 
   width: 430px;
   border-radius: 10px;
