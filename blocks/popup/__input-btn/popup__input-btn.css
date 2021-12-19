@@ -11,3 +11,9 @@
     border: none;
   }
 
+  @media screen and (max-width: 640px){
+    .popup__input-btn  {
+      margin-top: 16px;
+    }
+  }
+  

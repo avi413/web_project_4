@@ -1,19 +1,22 @@
   .popup__close {
-    position: fixed;
-    left: 50%;
-    top: 20%;
-    transform: translate(220px, -50%);
+    align-self: flex-start;
+    margin-top: 125px;
+    margin-left: 470px;
     border:none;
     background: none;
   }
 
   .popup__close::before {
-    content: url("/images/Close-Icon.svg");
+    content: url("../../../images/Close-Icon.svg");
   }
 
   @media screen and (max-width: 640px){
     .popup__close {
-      top: 17%;
-      transform: translate(140px, -50%);
+      margin-left: 250px;
+      margin-top: 158px;
+ 
+    }
+    .popup__close::before {
+      content: url("../../../images/mobile-close-icon.svg");
     }
   }
