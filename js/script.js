@@ -16,16 +16,16 @@ function handleProfileFormSubmit(evt) {
     evt.preventDefault(); 
     profileName.textContent  = inputName.value;
     profileAboutMe.textContent  =  inputAboutMe.value;
-    popup.classList.add("popup_state_closed");
+    popup.classList.add("popup_closed");
 }
 
 function handleClodeEditProfile(evt) {
-    popup.classList.add("popup_state_closed");
+    popup.classList.add("popup_closed");
 }
 
 function handleOpenEditProfile() {
     inputName.value  = profileName.textContent;
     inputAboutMe.value  =  profileAboutMe.textContent;
-    popup.classList.remove("popup_state_closed");
+    popup.classList.remove("popup_closed");
 }
 
