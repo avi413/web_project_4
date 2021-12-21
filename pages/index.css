@@ -1,9 +1,9 @@
 @import url("../vendor/normalize.css");
 @import url("../fonts/fonts.css");
 @import url("../blocks/button/button.css");
-@import url("../blocks/button/_opacity/button_opacity-l.css");
-@import url("../blocks/button/_opacity/button_opacity-m.css");
-@import url("../blocks/button/_opacity/button_opacity-h.css");
+@import url("../blocks/button/_opacity/button_opacity_l.css");
+@import url("../blocks/button/_opacity/button_opacity_m.css");
+@import url("../blocks/button/_opacity/button_opacity_h.css");
 @import url("../blocks/button/__clear/button__clear.css");
 @import url("../blocks/button/_border/button_border_m.css");
 @import url("../blocks/button/_border/button_border_sm.css");
