@@ -14,8 +14,8 @@ formElement.addEventListener('submit', handleProfileFormSubmit);
 
 function handleProfileFormSubmit(evt) {
     evt.preventDefault(); 
-    profileName.textContent  = inputName.value;
-    profileAboutMe.textContent  =  inputAboutMe.value;
+    profileName.textContent = inputName.value;
+    profileAboutMe.textContent = inputAboutMe.value;
     popup.classList.add("popup_closed");
 }
 
