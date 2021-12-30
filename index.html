@@ -8,14 +8,25 @@
     <title>Around The U.S.</title>
 </head>
 <body class="body">
-    <div class="popup popup_closed">
-        <button type="button"  class="popup__close button button_opacity_m" aria-label="close popup"></button>
+    <div class="popup popup_type_profile popup_closed">
+        <button class="popup__close popup__close_place_profile button button_opacity-60"></button>
         <div class="popup__container">
             <h2 class="popup__title">Edit profile</h2>
             <form action="#" class="popup__form" name="profile-form">
-                <input class="popup__input-text popup__input-text_type_name" type="text" placeholder="Name" name="profile-name">
-                <input class="popup__input-text popup__input-text_type_about-me" type="text" placeholder="About me" name="profile-about-me">
-                <input type="submit" class="popup__input-btn button button_opacity_h" value="Save">
+                <input class="popup__input-text popup__input-text_type_name" type="text" placeholder="Name" name="profileName">
+                <input class="popup__input-text popup__input-text_type_about-me" type="text" placeholder="About me" name="profileAboutMe">
+                <input type="submit" class="popup__input-btn button popup__input-btn_place_profile button_opacity-80" value="Save">
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_new-card popup_closed">
+        <button class="popup__close popup__close_place_new-card button button_opacity-60"></button>
+        <div class="popup__container">
+            <h2 class="popup__title">New place</h2>
+            <form action="#" class="popup__form" name="place-form">
+                <input class="popup__input-text popup__input-text_type_title" type="text" placeholder="Title" name="place-name">
+                <input class="popup__input-text popup__input-text_type_Image link" type="text" placeholder="Image link" name="placeImageLink">
+                <input type="submit" class="popup__input-btn popup__input-btn_place_new-card button button_opacity-80" value="Save">
             </form>
         </div>
     </div>
