@@ -4,7 +4,7 @@
 @import url("../blocks/button/_opacity/button_opacity_l.css");
 @import url("../blocks/button/_opacity/button_opacity_m.css");
 @import url("../blocks/button/_opacity/button_opacity_h.css");
-@import url("../blocks/button/__clear/button__clear.css");
+@import url("../blocks/button/_clear/button_clear.css");
 @import url("../blocks/button/_border/button_border_m.css");
 @import url("../blocks/button/_border/button_border_sm.css");
 @import url("../blocks/body/body.css");
