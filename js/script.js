@@ -71,8 +71,6 @@ const popupImgElement       = popupImg.querySelector(".popup__img");
 const popupImgtitleElement  = popupImg.querySelector(".popup__img-title");
 const popupCloseImg         = popupImg.querySelector("button.popup__close_place_img");
 
-
-
 //popups open events
 profileEditBtn.addEventListener("click", () => {
   inputName.value  = profileName.textContent;
@@ -111,7 +109,6 @@ function handleDeletegaleryCarditem(evt){
 function handleLikeBtn(evt){
   evt.target.classList.toggle('galery__item-like-btn_active');
 }
-
 
 function handleOpenImgPopup(evt){ 
   popupImgtitleElement.textContent = evt.target.alt;
