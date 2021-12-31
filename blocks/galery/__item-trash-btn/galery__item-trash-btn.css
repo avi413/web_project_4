@@ -1,0 +1,17 @@
+.galery__item-trash-btn {
+    width: 18px;
+    height: 19.3px;
+    justify-self: end;
+    margin-bottom: -20px;
+    z-index: 1;
+    padding-top: 18px;
+    margin-right: 15px;
+}
+
+.galery__item-trash-btn::before {
+  content: url("../../../images/Trash.svg");
+}
+
+.galery__item-trash-btn:hover {
+    opacity: .6;
+}

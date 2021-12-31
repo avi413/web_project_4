@@ -32,6 +32,7 @@
 @import url("../blocks/galery/__item-img/galery__item-img.css");
 @import url("../blocks/galery/__item-footer/galery__item-footer.css");
 @import url("../blocks/galery/__item-like-btn/galery__item-like-btn.css");
+@import url("../blocks/galery/__item-trash-btn/galery__item-trash-btn.css");
 @import url("../blocks/galery/__item-like-btn/_active/galery__item-like-btn_active.css");
 @import url("../blocks/galery/__item-name/galery__item-name.css");
 @import url("../blocks/footer/footer.css");

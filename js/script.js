@@ -100,12 +100,16 @@ function addGaleryCardItem(imgSrctValue, titleValue) {
   const itemTemplate = document.querySelector("#galery-item-template").content;
   const galeryitemEl = itemTemplate.querySelector('.galery__item').cloneNode(true);
   const likeBtn = galeryitemEl.querySelector(".galery__item-like-btn");
+  const trashBtn = galeryitemEl.querySelector(".galery__item-trash-btn");
 
   galeryitemEl.querySelector(".galery__item-name").textContent = titleValue;
   galeryitemEl.querySelector(".galery__item-img").src = imgSrctValue;
 
   likeBtn.addEventListener("click",(evt)=>{
     evt.target.classList.toggle('galery__item-like-btn_active');
+  })
+  trashBtn.addEventListener("click",()=>{
+    galeryitemEl.remove();
   })
   galeryListContainer.prepend(galeryitemEl); 
 }
