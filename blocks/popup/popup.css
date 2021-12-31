@@ -11,13 +11,14 @@
   animation: showNav 600ms ease-in-out both;
 }
 
-  @media screen and (max-width: 640px){
-    .popup {
-      gap: 13px;
-      justify-content: flex-start;
-      padding-top: 85px;
-    }
+@media screen and (max-width: 640px){
+  .popup {
+    gap: 13px;
+    justify-content: flex-start;
+    padding-top: 85px;
   }
+}
+
   @keyframes showNav {
     from {opacity: 0;}
     to {opacity: 1;}
