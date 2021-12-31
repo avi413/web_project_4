@@ -3,7 +3,7 @@
     row-gap: 16px;
     column-gap: 18px;
     grid-template: "name edit" auto
-                "about about"  auto;    
+                "about about"  auto; 
     align-items: center;    
 }
 
