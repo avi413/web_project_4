@@ -39,31 +39,39 @@ const openPopup = (popuop) => {
 }
 
 //main buttons
-const profileEditBtn      = document.querySelector("button.profile__edit-btn");
-const opeNewCardPopupBtn  = document.querySelector("button.profile__add-btn");
+const profileEditBtn        = document.querySelector("button.profile__edit-btn");
+const opeNewCardPopupBtn    = document.querySelector("button.profile__add-btn");
 
 //profile data elements
-const profileName         = document.querySelector(".profile__name");
-const profileAboutMe      = document.querySelector(".profile__about-me");
+const profileName           = document.querySelector(".profile__name");
+const profileAboutMe        = document.querySelector(".profile__about-me");
 
 //galery container
-const container           = document.querySelector(".galery");
-const galeryListContainer = container.querySelector(".galery__list");
+const container             = document.querySelector(".galery");
+const galeryListContainer   = container.querySelector(".galery__list");
 
 //profile popup elements
-const profileFormElement  = document.querySelector(".popup__form_type_profile");
-const popupProfile        = document.querySelector(".popup_type_profile");
-const popupCloseProfile   = popupProfile.querySelector("button.popup__close_place_profile");
-const inputName           = popupProfile.querySelector(".popup__input-text_type_name");
-const inputAboutMe        = popupProfile.querySelector(".popup__input-text_type_about-me");
+const profileFormElement    = document.querySelector(".popup__form_type_profile");
+const popupProfile          = document.querySelector(".popup_type_profile");
+const popupCloseProfile     = popupProfile.querySelector("button.popup__close_place_profile");
+const inputName             = popupProfile.querySelector(".popup__input-text_type_name");
+const inputAboutMe          = popupProfile.querySelector(".popup__input-text_type_about-me");
 
 //new galery cars popup elements
-const newCardFormElement  = document.querySelector(".popup__form_type_new-card");
-const popupNewCard        = document.querySelector(".popup_type_new-card");
-const popupCloseNewCard   = popupNewCard.querySelector("button.popup__close_place_new-card");
-const newCardBtn          = popupNewCard.querySelector(".popup__input-btn_place_new-card");
-const inputTitle          = popupNewCard.querySelector(".popup__input-text_type_title");
-const inputImageLink      = popupNewCard.querySelector(".popup__input-text_type_Image-link");
+const newCardFormElement    = document.querySelector(".popup__form_type_new-card");
+const popupNewCard          = document.querySelector(".popup_type_new-card");
+const popupCloseNewCard     = popupNewCard.querySelector("button.popup__close_place_new-card");
+const newCardBtn            = popupNewCard.querySelector(".popup__input-btn_place_new-card");
+const inputTitle            = popupNewCard.querySelector(".popup__input-text_type_title");
+const inputImageLink        = popupNewCard.querySelector(".popup__input-text_type_Image-link");
+
+//image galery popup elements
+const popupImg              = document.querySelector(".popup_type_img");
+const popupImgElement       = popupImg.querySelector(".popup__img");
+const popupImgtitleElement  = popupImg.querySelector(".popup__img-title");
+const popupCloseImg         = popupImg.querySelector("button.popup__close_place_img");
+
+
 
 //popups open events
 profileEditBtn.addEventListener("click", () => {
@@ -77,6 +85,7 @@ opeNewCardPopupBtn.addEventListener("click", () => openPopup(popupNewCard) );
 //popups close events
 popupCloseProfile.addEventListener("click", () => closePopup(popupProfile));
 popupCloseNewCard.addEventListener("click", () => closePopup(popupNewCard));
+popupCloseImg.addEventListener("click", () => closePopup(popupImg));
 
 profileFormElement.addEventListener('submit', handleProfileFormSubmit); 
 newCardFormElement.addEventListener("submit", handleCreateNewCard);
@@ -96,21 +105,36 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfile);
 }
 
+function handleDeletegaleryCarditem(evt){
+  evt.target.closest('.galery__item').remove();
+}
+function handleLikeBtn(evt){
+  evt.target.classList.toggle('galery__item-like-btn_active');
+}
+
+
+function handleOpenImgPopup(evt){ 
+  popupImgtitleElement.textContent = evt.target.alt;
+  popupImgElement.src = evt.target.src;
+  popupImgElement.alt = evt.target.alt;
+  openPopup(popupImg);
+}
+
 function addGaleryCardItem(imgSrctValue, titleValue) {
-  const itemTemplate = document.querySelector("#galery-item-template").content;
-  const galeryitemEl = itemTemplate.querySelector('.galery__item').cloneNode(true);
-  const likeBtn = galeryitemEl.querySelector(".galery__item-like-btn");
-  const trashBtn = galeryitemEl.querySelector(".galery__item-trash-btn");
+  const itemTemplate    = document.querySelector("#galery-item-template").content;
+  const galeryitemEl    = itemTemplate.querySelector('.galery__item').cloneNode(true);
+  const likeBtn         = galeryitemEl.querySelector(".galery__item-like-btn");
+  const trashBtn        = galeryitemEl.querySelector(".galery__item-trash-btn");
+  const galeryImg       = galeryitemEl.querySelector(".galery__item-img");
+  const galeryItemName  = galeryitemEl.querySelector(".galery__item-name");
 
-  galeryitemEl.querySelector(".galery__item-name").textContent = titleValue;
-  galeryitemEl.querySelector(".galery__item-img").src = imgSrctValue;
+  galeryItemName.textContent = titleValue;
+  galeryImg.src = imgSrctValue;
+  galeryImg.alt = titleValue;
 
-  likeBtn.addEventListener("click",(evt)=>{
-    evt.target.classList.toggle('galery__item-like-btn_active');
-  })
-  trashBtn.addEventListener("click",()=>{
-    galeryitemEl.remove();
-  })
+  likeBtn.addEventListener("click",handleLikeBtn)
+  trashBtn.addEventListener("click",handleDeletegaleryCarditem)
+  galeryImg.addEventListener("click", handleOpenImgPopup);
   galeryListContainer.prepend(galeryitemEl); 
 }
 
