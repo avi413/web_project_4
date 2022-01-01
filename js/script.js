@@ -26,7 +26,7 @@ const rebderCards = () => {
     }
   ]; 
   initialCards.forEach(element => {
-      addGaleryCardItem(element.link,element.name);
+      addGaleryCardItem(element);
   });
 };
 
@@ -90,7 +90,8 @@ newCardFormElement.addEventListener("submit", handleCreateNewCard);
 
 function handleCreateNewCard(evt) {
     evt.preventDefault(); 
-    addGaleryCardItem(inputImageLink.value, inputTitle.value);
+    const item = {link: inputImageLink.value, name: inputTitle.value}
+    addGaleryCardItem(item);
     inputImageLink.value = "";
     inputTitle.value = "";
     closePopup(popupNewCard);
@@ -117,7 +118,12 @@ function handleOpenImgPopup(evt){
   openPopup(popupImg);
 }
 
-function addGaleryCardItem(imgSrctValue, titleValue) {
+function addGaleryCardItem(item) {
+  const galeryitemEl = createCard(item)
+  galeryListContainer.prepend(galeryitemEl); 
+}
+
+function createCard(item) {
   const itemTemplate    = document.querySelector("#galery-item-template").content;
   const galeryitemEl    = itemTemplate.querySelector('.galery__item').cloneNode(true);
   const likeBtn         = galeryitemEl.querySelector(".galery__item-like-btn");
@@ -125,14 +131,15 @@ function addGaleryCardItem(imgSrctValue, titleValue) {
   const galeryImg       = galeryitemEl.querySelector(".galery__item-img");
   const galeryItemName  = galeryitemEl.querySelector(".galery__item-name");
 
-  galeryItemName.textContent = titleValue;
-  galeryImg.src = imgSrctValue;
-  galeryImg.alt = titleValue;
+  galeryItemName.textContent = item.name;
+  galeryImg.src = item.link;
+  galeryImg.alt = item.name;
 
   likeBtn.addEventListener("click",handleLikeBtn)
   trashBtn.addEventListener("click",handleDeletegaleryCarditem)
   galeryImg.addEventListener("click", handleOpenImgPopup);
-  galeryListContainer.prepend(galeryitemEl); 
+
+  return galeryitemEl;
 }
 
 rebderCards();
