@@ -1,30 +1,35 @@
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-]; 
 
+const renderCards = () => {
+  const initialCards = [
+    {
+      name: "Yosemite Valley",
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+      name: "Vanoise National Park",
+      link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    },
+    {
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    }
+  ]; 
+  initialCards.forEach(element => {
+      addGaleryCardItem(element);
+  });
+};
 
 const closePopup = (popuop) => {
   popuop.classList.remove("popup_opened");
@@ -84,12 +89,6 @@ popupCloseImg.addEventListener("click", () => closePopup(popupImg));
 profileFormElement.addEventListener('submit', handleProfileFormSubmit); 
 newCardFormElement.addEventListener("submit", handleCreateNewCard);
 
-function rebderInitialCards(cards) {
-  cards.forEach(element => {
-    addGaleryCardItem(element);
-  });
-}
-
 function handleCreateNewCard(evt) {
     evt.preventDefault(); 
     const item = {link: inputImageLink.value, name: inputTitle.value}
@@ -144,4 +143,4 @@ function createCard(item) {
   return galeryitemEl;
 }
 
-rebderInitialCards(initialCards);
+renderCards();
