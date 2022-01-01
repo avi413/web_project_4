@@ -31,11 +31,11 @@ const rebderCards = () => {
 };
 
 const closePopup = (popuop) => {
-  popuop.classList.add("popup_closed");
+  popuop.classList.remove("popup_opened");
 }
 
 const openPopup = (popuop) => {
-  popuop.classList.remove("popup_closed");
+  popuop.classList.add("popup_opened");
 }
 
 //main buttons
