@@ -1,4 +1,4 @@
-.popup__input-btn {
+.popup__submit-btn {
     margin-top: 48px;
     margin-bottom: 0;
     background-color: #000;
@@ -13,8 +13,7 @@
   }
 
   @media screen and (max-width: 640px){
-    .popup__input-btn  {
+    .popup__submit-btn  {
       margin-top: 46px;
     }
   }
-  

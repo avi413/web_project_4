@@ -12,10 +12,14 @@
         <button aria-label="close popup" class="popup__close popup__close_place_profile button button_opacity-60"></button>
         <div class="popup__container">
             <h2 class="popup__title">Edit profile</h2>
-            <form action="#" class="popup__form popup__form_type_profile" name="profile-form">
-                <input class="popup__input-text popup__input-text_type_name" type="text" placeholder="Name" name="profileName">
-                <input class="popup__input-text popup__input-text_type_about-me" type="text" placeholder="About me" name="profileAboutMe">
-                <input type="submit" class="popup__input-btn button popup__input-btn_place_profile button_opacity-80" value="Save">
+            <form action="#" class="popup__form popup__form_type_profile" name="profile-form" novalidate>
+                <fieldset class="popup__form-set">
+                    <input id="profile-name-input" required class="popup__input popup__input-text popup__input-text_type_name" type="text" placeholder="Name" name="profileName">
+                    <span class="form__input-error profile-name-input-error"></span>
+                    <input id="profile-about-me-input" required class="popup__input popup__input-text popup__input-text_type_about-me" type="text" placeholder="About me" name="profileAboutMe">
+                    <span class="form__input-error profile-about-me-input-error"></span>
+                    <button type="submit" class="popup__submit-btn button popup__submit-btn_place_profile button_opacity-80">Save</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -23,10 +27,14 @@
         <button aria-label="close popup" class="popup__close popup__close_place_new-card button button_opacity-60"></button>
         <div class="popup__container">
             <h2 class="popup__title">New place</h2>
-            <form action="#" class="popup__form popup__form_type_new-card" name="place-form">
-                <input class="popup__input-text popup__input-text_type_title" required type="text" placeholder="Title" name="placeName">
-                <input class="popup__input-text popup__input-text_type_Image-link" required type="text" placeholder="Image link" name="placeImageLink">
-                <input type="submit" class="popup__input-btn popup__input-btn_place_new-card button button_opacity-80" value="Save">
+            <form action="#" class="popup__form popup__form_type_new-card" name="place-form" novalidate>
+                <fieldset class="popup__form-set">
+                    <input id="card-title-input" required  class="popup__input popup__input-text popup__input-text_type_title" required type="text" placeholder="Title" name="placeName">
+                    <span class="form__input-error card-title-input-error"></span>
+                    <input  id="card-link-input" required class="popup__input popup__input-text popup__input-text_type_Image-link" required type="url" placeholder="Image link" name="placeImageLink">
+                    <span class="form__input-error card-link-input-error"></span>
+                    <button type="submit" class="popup__submit-btn popup__submit-btn_place_new-card button button_opacity-80">Save</button>
+                </fieldset> 
             </form>
         </div>
     </div>
