@@ -94,6 +94,20 @@ popupCloseImg.addEventListener("click", () => closePopup(popupImg));
 profileFormElement.addEventListener('submit', handleProfileFormSubmit); 
 newCardFormElement.addEventListener("submit", handleCreateNewCard);
 
+//galert Items Event listener
+galeryListContainer.addEventListener("click", function (evt) {
+  // if the user has pressed on the like button, add a like
+  if (evt.target.classList.contains("galery__item-like-btn")) {
+    handleLikeBtn(evt);
+  }
+  if (evt.target.classList.contains("galery__item-trash-btn")) {
+    handleDeletegaleryCarditem(evt);
+  }
+  if (evt.target.classList.contains("galery__item-img")) {
+    handleOpenImgPopup(evt);
+  }
+}); 
+
 //--------------------
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -199,18 +213,12 @@ function addGaleryCardItem(item) {
 function createCard(item) {
   const itemTemplate    = document.querySelector("#galery-item-template").content;
   const galeryitemEl    = itemTemplate.querySelector('.galery__item').cloneNode(true);
-  const likeBtn         = galeryitemEl.querySelector(".galery__item-like-btn");
-  const trashBtn        = galeryitemEl.querySelector(".galery__item-trash-btn");
   const galeryImg       = galeryitemEl.querySelector(".galery__item-img");
   const galeryItemName  = galeryitemEl.querySelector(".galery__item-name");
 
   galeryItemName.textContent = item.name;
   galeryImg.src = item.link;
   galeryImg.alt = item.name;
-
-  likeBtn.addEventListener("click",handleLikeBtn)
-  trashBtn.addEventListener("click",handleDeletegaleryCarditem)
-  galeryImg.addEventListener("click", handleOpenImgPopup);
 
   return galeryitemEl;
 }
