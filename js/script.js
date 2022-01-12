@@ -48,8 +48,8 @@ const profileForm           = document.forms.profileform;
 const profileFormElement    = document.querySelector(".popup__form_type_profile");
 const popupProfile          = document.querySelector(".popup_type_profile");
 const popupCloseProfile     = popupProfile.querySelector("button.popup__close_place_profile");
-const inputName             = popupProfile.querySelector(".popup__input-text_type_name");
-const inputAboutMe          = popupProfile.querySelector(".popup__input-text_type_about-me");
+const inputName             = profileForm.elements.profileName;
+const inputAboutMe          = profileForm.elements.profileAboutMe;
 
 //new galery cars popup elements
 const placeForm             = document.forms.placeform;
@@ -121,74 +121,7 @@ galeryListContainer.addEventListener("click", function (evt) {
   }
 }); 
 
-//--------------------
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("popup__input-text_type_error");
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("popup__input-text-error_active");
-};
 
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove("popup__input-text_type_error");
-  errorElement.classList.remove("popup__input-text-error_active");
-  errorElement.textContent = "";
-};
-
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add("button_inactive");
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.classList.remove("button_inactive");
-    buttonElement.disabled = false;
-  }
-};
-
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
-  const buttonElement = formElement.querySelector(".popup__submit-btn");
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {   
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".popup__form"));
-  formList.forEach((formElement) => {
-    formElement.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
-
-    const fieldsetList = Array.from(formElement.querySelectorAll(".popup__form-set"));
-
-    fieldsetList.forEach((fieldset) => {
-      setEventListeners(fieldset);
-    });
-  });
-};
-
-enableValidation();
-//-------------------
 function handleCreateNewCard(evt) {
     evt.preventDefault(); 
     const item = {link: inputImageLink.value, name: inputTitle.value}
