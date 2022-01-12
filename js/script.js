@@ -86,10 +86,23 @@ profileEditBtn.addEventListener("click", () => {
 
 opeNewCardPopupBtn.addEventListener("click", () => openPopup(popupNewCard) );
 
-//popups close events
-popupCloseProfile.addEventListener("click", () => closePopup(popupProfile));
-popupCloseNewCard.addEventListener("click", () => closePopup(popupNewCard));
-popupCloseImg.addEventListener("click", () => closePopup(popupImg));
+//popups close click events
+  document.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains("popup_opened") ||
+        evt.target.classList.contains("popup__close") ) {
+      const popup = document.querySelector(".popup_opened");
+      closePopup(popup); 
+    }
+  });
+//popups close Escape events
+  document.addEventListener("keydown", function (evt) {
+      if (evt.key === "Escape") {
+        const popup = document.querySelector(".popup_opened");
+        if(popup)
+          closePopup(popup); 
+      };
+  }); 
+
 
 profileFormElement.addEventListener('submit', handleProfileFormSubmit); 
 newCardFormElement.addEventListener("submit", handleCreateNewCard);
