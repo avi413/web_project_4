@@ -1,4 +1,7 @@
 .button_inactive {
     cursor: not-allowed;
-    background-color: rgb(229, 229, 229) !important
+    background-color: #FFF!important;
+    color: rgba(0, 0, 0, 1)!important;
+    border: 1px solid #000000!important;
+    opacity: 0.2;
   }
