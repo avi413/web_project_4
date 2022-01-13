@@ -9,7 +9,7 @@
 </head>
 <body class="body">
     <div class="popup popup_type_profile">
-        <button aria-label="close popup" class="popup__close popup__close_place_profile button button_opacity-60"></button>
+        <button aria-label="close popup" class="popup__close popup__close_place_profile button button_opacity_m"></button>
         <div class="popup__container">
             <h2 class="popup__title">Edit profile</h2>
             <form action="#" class="popup__form popup__form_type_profile" name="profileform" novalidate>
@@ -18,13 +18,13 @@
                     <span class="popup__input-error profile-name-input-error"></span>
                     <input id="profile-about-me-input" required class="popup__input popup__input-text popup__input-text_type_about-me" type="text" placeholder="About me" name="profileAboutMe" minlength="2" maxlength="400">
                     <span class="popup__input-error profile-about-me-input-error"></span>
-                    <button type="submit" class="popup__submit-btn button popup__submit-btn_place_profile button_opacity-80">Save</button>
+                    <button type="submit" class="popup__submit-btn button popup__submit-btn_place_profile button_opacity_h">Save</button>
                 </fieldset>
             </form>
         </div>
     </div>
     <div class="popup popup_type_new-card">
-        <button aria-label="close popup" class="popup__close popup__close_place_new-card button button_opacity-60"></button>
+        <button aria-label="close popup" class="popup__close popup__close_place_new-card button button_opacity_m"></button>
         <div class="popup__container">
             <h2 class="popup__title">New place</h2>
             <form action="#" class="popup__form popup__form_type_new-card" name="placeform" novalidate>
@@ -33,14 +33,14 @@
                     <span class="popup__input-error card-title-input-error"></span>
                     <input  id="card-link-input" class="popup__input popup__input-text popup__input-text_type_Image-link" required type="url" placeholder="Image link" name="placeImageLink">
                     <span class="popup__input-error card-link-input-error"></span>
-                    <button type="submit" class="popup__submit-btn popup__submit-btn_place_new-card button button_opacity-80">Save</button>
+                    <button type="submit" class="popup__submit-btn popup__submit-btn_place_new-card button button_opacity_h">Save</button>
                 </fieldset> 
             </form>
         </div>
     </div>
     <div class="popup popup_type_img">
         <div class="popup__img-container">
-            <button aria-label="close popup" class="popup__close popup__close_place_img button button_opacity-60"></button>
+            <button aria-label="close popup" class="popup__close popup__close_place_img button button_opacity_m"></button>
             <img src="#" alt="popup img" class="popup__img">
             <p class="popup__img-title"></p>
         </div>
@@ -63,15 +63,15 @@
                  </div>
                  <button  aria-label="add profile" type="button" class="profile__add-btn button button_clear button_open button_opacity_m button_border_m"></button>
              </section>
-             <section class="galery">
-                 <ul class="galery__list">
-                    <template id="galery-item-template">
-                        <li class="galery__item">
-                            <button aria-label="trash button" type="button" class="galery__item-trash-btn button button_clear"></button>
-                            <img src="#" alt="Yosemite Valley" class="galery__item-img">
-                            <div class="galery__item-footer">
-                                <h2 class="galery__item-name"></h2>
-                                <button aria-label="like button" type="button" class="galery__item-like-btn button button_clear"></button>
+             <section class="gallery">
+                 <ul class="gallery__list">
+                    <template id="gallery-item-template">
+                        <li class="gallery__item">
+                            <button aria-label="trash button" type="button" class="gallery__item-trash-btn button button_clear"></button>
+                            <img src="#" alt="Yosemite Valley" class="gallery__item-img">
+                            <div class="gallery__item-footer">
+                                <h2 class="gallery__item-name"></h2>
+                                <button aria-label="like button" type="button" class="gallery__item-like-btn button button_clear"></button>
                             </div>
                         </li>                     
                     </template>
