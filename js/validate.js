@@ -46,8 +46,8 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     });
   };
   
-  const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll(".popup__form"));
+  const enableValidation = (formList) => {
+ 
     formList.forEach((formElement) => {
       formElement.addEventListener("submit", function (evt) {
         evt.preventDefault();
@@ -60,5 +60,5 @@ const showInputError = (formElement, inputElement, errorMessage) => {
       });
     });
   };
-  
-  enableValidation();
+  const formList = Array.from(document.querySelectorAll(".popup__form"));
+  enableValidation(formList);

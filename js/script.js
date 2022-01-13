@@ -26,7 +26,7 @@ const renderCards = () => {
       link: "https://code.s3.yandex.net/web-code/lago.jpg"
     }
   ]; 
-  initialCards.forEach(addgalleryCardItem);
+  initialCards.forEach(addGalleryCardItem);
 };
 
 /** main buttons */
@@ -65,14 +65,19 @@ const popupImgTitleEl       = popupImg.querySelector(".popup__img-title");
 const popupCloseImg         = popupImg.querySelector("button.popup__close_place_img");
 
 const closePopup = (popuop) => {
-  document.removeEventListener("keydown", handlekeydownPopup);
   popuop.classList.remove("popup_opened");
+
+  /** popups close click events */
+  document.removeEventListener("keydown", handleKeydownPopup);
+  document.removeEventListener('click', handleClickClosePopup);
 }
 
-/** popups open events */
 function openPopup(popuop) {
-  document.addEventListener("keydown", handlekeydownPopup);
   popuop.classList.add("popup_opened");
+
+  /** popups open events */
+  document.addEventListener("keydown", handleKeydownPopup);
+  document.addEventListener('click', handleClickClosePopup);
 }
 
 const openPopupWithValidation = (popup) => {
@@ -88,18 +93,13 @@ profileEditBtn.addEventListener("click", () => {
   openPopupWithValidation(popupProfile);
 });
 
-opeNewCardPopupBtn.addEventListener("click", () => openPopupWithValidation(popupNewCard) );
+opeNewCardPopupBtn.addEventListener("click", () => openPopupWithValidation(popupNewCard));
 
-/** popups close click events */
-  document.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains("popup_opened") ||
-        evt.target.classList.contains("popup__close") ) {
-          const popup = document.querySelector(".popup_opened");
-          closePopup(popup); 
-    }
-  });
+profileFormEl.addEventListener('submit', handleProfileFormSubmit); 
+newCardFormEl.addEventListener("submit", handleCreateNewCard);
+
 /** popups close keydown Escape */
-function handlekeydownPopup(evt) {
+function handleKeydownPopup(evt) {
   if (evt.key === "Escape") {
     const popup = document.querySelector(".popup_opened");
     if(popup)
@@ -107,28 +107,18 @@ function handlekeydownPopup(evt) {
   }
 }
 
-profileFormEl.addEventListener('submit', handleProfileFormSubmit); 
-newCardFormEl.addEventListener("submit", handleCreateNewCard);
-
-/** galert Items Event listener */
-galleryListContainer.addEventListener("click", function (evt) {
-  /** if the user has pressed on the like button, add a like */
-  if (evt.target.classList.contains("gallery__item-like-btn")) {
-    handleLikeBtn(evt);
+function handleClickClosePopup(evt) {
+  if (evt.target.classList.contains("popup_opened") ||
+      evt.target.classList.contains("popup__close") ) {
+        const popup = document.querySelector(".popup_opened");
+        closePopup(popup); 
   }
-  if (evt.target.classList.contains("gallery__item-trash-btn")) {
-    handleDeletegalleryCarditem(evt);
-  }
-  if (evt.target.classList.contains("gallery__item-img")) {
-    handleOpenImgPopup(evt);
-  }
-}); 
-
+}
 
 function handleCreateNewCard(evt) {
     evt.preventDefault(); 
     const item = {link: inputImageLink.value, name: inputTitle.value}
-    addgalleryCardItem(item);
+    addGalleryCardItem(item);
     placeForm.reset();
     closePopup(popupNewCard);
 }
@@ -140,7 +130,7 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfile);
 }
 
-function handleDeletegalleryCarditem(evt){
+function handleDeleteGalleryCarditem(evt){
   evt.target.closest('.gallery__item').remove();
 }
 function handleLikeBtn(evt){
@@ -154,22 +144,29 @@ function handleOpenImgPopup(evt){
   openPopup(popupImg);
 }
 
-function addgalleryCardItem(item) {
-  const galleryitemEl = createCard(item)
-  galleryListContainer.prepend(galleryitemEl); 
+function addGalleryCardItem(item) {
+  const galleryItemEl = createCard(item)
+  galleryListContainer.prepend(galleryItemEl); 
 }
 
 function createCard(item) {
-  const itemTemplate    = document.querySelector("#gallery-item-template").content;
-  const galleryitemEl    = itemTemplate.querySelector('.gallery__item').cloneNode(true);
-  const galleryImg       = galleryitemEl.querySelector(".gallery__item-img");
-  const galleryItemName  = galleryitemEl.querySelector(".gallery__item-name");
+  const itemTemplate      = document.querySelector("#gallery-item-template").content;
+  const galleryItemEl     = itemTemplate.querySelector(".gallery__item").cloneNode(true);
+  const likeBtn           = galleryItemEl.querySelector(".gallery__item-like-btn");
+  const trashBtn          = galleryItemEl.querySelector(".gallery__item-trash-btn");
+  const galleryImg        = galleryItemEl.querySelector(".gallery__item-img");
+  const galleryItemName   = galleryItemEl.querySelector(".gallery__item-name");
 
   galleryItemName.textContent = item.name;
   galleryImg.src = item.link;
   galleryImg.alt = item.name;
 
-  return galleryitemEl;
+  likeBtn.addEventListener("click",handleLikeBtn)
+  trashBtn.addEventListener("click",handleDeleteGalleryCarditem)
+  galleryImg.addEventListener("click", handleOpenImgPopup);
+
+
+  return galleryItemEl;
 }
 
 renderCards();
