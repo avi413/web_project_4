@@ -26,9 +26,7 @@ const renderCards = () => {
       link: "https://code.s3.yandex.net/web-code/lago.jpg"
     }
   ]; 
-  initialCards.forEach(element => {
-      addgalleryCardItem(element);
-  });
+  initialCards.forEach(addgalleryCardItem);
 };
 
 /** main buttons */
@@ -67,20 +65,23 @@ const popupImgTitleEl       = popupImg.querySelector(".popup__img-title");
 const popupCloseImg         = popupImg.querySelector("button.popup__close_place_img");
 
 const closePopup = (popuop) => {
+  document.removeEventListener("keydown", handlekeydownPopup);
   popuop.classList.remove("popup_opened");
 }
 
-const openPopup = (popuop) => {
+/** popups open events */
+function openPopup(popuop) {
+  document.addEventListener("keydown", handlekeydownPopup);
   popuop.classList.add("popup_opened");
 }
 
 const openPopupWithValidation = (popup) => {
   openPopup(popup);
-  const inputList = Array.from(popuop.querySelectorAll(".popup__input"));
-  const buttonElement = popuop.querySelector(".popup__submit-btn");
+  const inputList = Array.from(popup.querySelectorAll(".popup__input"));
+  const buttonElement = popup.querySelector(".popup__submit-btn");
   toggleButtonState(inputList, buttonElement);
 }
-/** popups open events */
+
 profileEditBtn.addEventListener("click", () => {
   inputName.value  = profileName.textContent;
   inputAboutMe.value  =  profileAboutMe.textContent;
@@ -93,19 +94,18 @@ opeNewCardPopupBtn.addEventListener("click", () => openPopupWithValidation(popup
   document.addEventListener('click', function (evt) {
     if (evt.target.classList.contains("popup_opened") ||
         evt.target.classList.contains("popup__close") ) {
-      const popup = document.querySelector(".popup_opened");
-      closePopup(popup); 
+          const popup = document.querySelector(".popup_opened");
+          closePopup(popup); 
     }
   });
-/** popups close Escape events */
-  document.addEventListener("keydown", function (evt) {
-      if (evt.key === "Escape") {
-        const popup = document.querySelector(".popup_opened");
-        if(popup)
-          closePopup(popup); 
-      };
-  }); 
-
+/** popups close keydown Escape */
+function handlekeydownPopup(evt) {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector(".popup_opened");
+    if(popup)
+      closePopup(popup); 
+  }
+}
 
 profileFormEl.addEventListener('submit', handleProfileFormSubmit); 
 newCardFormEl.addEventListener("submit", handleCreateNewCard);
