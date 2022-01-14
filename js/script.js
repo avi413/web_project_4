@@ -67,9 +67,9 @@ const popupCloseImg         = popupImg.querySelector("button.popup__close_place_
 const closePopup = (popuop) => {
   popuop.classList.remove("popup_opened");
 
-  /** popups close click events */
+  /** popups close click remove events */
   document.removeEventListener("keydown", handleKeydownPopup);
-  document.removeEventListener('click', handleClickClosePopup);
+  document.removeEventListener("click", handleClickClosePopup);
 }
 
 function openPopup(popuop) {
@@ -77,7 +77,7 @@ function openPopup(popuop) {
 
   /** popups open events */
   document.addEventListener("keydown", handleKeydownPopup);
-  document.addEventListener('click', handleClickClosePopup);
+  document.addEventListener("click", handleClickClosePopup);
 }
 
 const openPopupWithValidation = (popup) => {
@@ -130,7 +130,7 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfile);
 }
 
-function handleDeleteGalleryCarditem(evt){
+function handleDeleteGalleryCardItem(evt){
   evt.target.closest('.gallery__item').remove();
 }
 function handleLikeBtn(evt){
@@ -162,7 +162,7 @@ function createCard(item) {
   galleryImg.alt = item.name;
 
   likeBtn.addEventListener("click",handleLikeBtn)
-  trashBtn.addEventListener("click",handleDeleteGalleryCarditem)
+  trashBtn.addEventListener("click",handleDeleteGalleryCardItem)
   galleryImg.addEventListener("click", handleOpenImgPopup);
 
 
