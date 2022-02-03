@@ -1,5 +1,4 @@
 
-
 const renderCards = () => {
   const initialCards = [
     {
@@ -140,7 +139,6 @@ function addGalleryCardItem(item) {
  // galleryListContainer.prepend(galleryItemEl); 
   galleryListContainer.prepend(cardElement); 
 }
-
 
 class Card {
   constructor(data, cardSelector) {
