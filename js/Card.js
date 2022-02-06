@@ -22,7 +22,7 @@ export default class Card {
   
       this._element.querySelector(".gallery__item-img").src = this._img;
       this._element.querySelector(".gallery__item-name").textContent = this._text;
-      this._element.querySelector(".gallery__item-name").alt = this._text;
+      this._element.querySelector(".gallery__item-name").alt = `Photo of ${this._text}`;
       this._setEventListeners();
       return this._element;
     }

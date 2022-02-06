@@ -64,7 +64,8 @@ const inputAboutMe          = profileForm.elements.profileAboutMe;
 const newCardFormEl         = document.querySelector(".popup__form_type_new-card");
 const popupNewCard          = document.querySelector(".popup_type_new-card");
 const popupCloseNewCard     = popupNewCard.querySelector("button.popup__close_place_new-card");
-const newCardBtn            = popupNewCard.querySelector(".popup__submit-btn_place_new-card");
+
+const submitBtn            = document.querySelector(".popup__submit-btn");
 
 const placeForm             = document.forms.placeform;
 const inputTitle            = placeForm.elements.placeName;
@@ -95,6 +96,7 @@ function handleCreateNewCard(evt) {
   addGalleryCardItem(item);
   placeForm.reset();
   utils.closePopup(popupNewCard);
+  newCardValidator.enableValidation();
 }
 
 function handleProfileFormSubmit(evt) {
@@ -102,6 +104,7 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = inputName.value;
   profileAboutMe.textContent = inputAboutMe.value;
   utils.closePopup(popupProfile);
+  profileValidator.enableValidation();
 }
 
 const newCardValidator = new FormValidator(config,".popup__form_type_new-card");
