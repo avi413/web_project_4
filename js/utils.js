@@ -30,6 +30,4 @@ function handleClickClosePopup(evt) {
     }
 }
 
-
-
 export {closePopup, openPopup, handleMousdownPopup, handleClickClosePopup}

@@ -70,8 +70,6 @@ const placeForm             = document.forms.placeform;
 const inputTitle            = placeForm.elements.placeName;
 const inputImageLink        = placeForm.elements.placeImageLink;
 
-
-
 profileEditBtn.addEventListener("click", () => {
   inputName.value  = profileName.textContent;
   inputAboutMe.value  =  profileAboutMe.textContent;
