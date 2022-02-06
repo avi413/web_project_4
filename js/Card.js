@@ -28,26 +28,22 @@ export default class Card {
     }
   
     _setEventListeners() {
-      this._element.querySelector(".gallery__item-like-btn").addEventListener("click", () => {
-        this._handleLikeBtn();
-      });
-      this._element.querySelector(".gallery__item-trash-btn").addEventListener("click", () => {
-        this._handleDeleteGalleryCardItem();
-      });
-      this._element.querySelector(".gallery__item-img").addEventListener("click",  () => {
-        this._handleOpenImgPopup();
-      });
+      this._element.querySelector(".gallery__item-like-btn").addEventListener("click",  this._handleLikeBtn);
+      this._element.querySelector(".gallery__item-trash-btn").addEventListener("click",this._handleDeleteGalleryCardItem);
+      this._element.querySelector(".gallery__item-img").addEventListener("click", this._handleOpenImgPopup);
     }
   
-    _handleLikeBtn() {
+    _handleLikeBtn = () => {
       this._element.querySelector(".gallery__item-like-btn").classList.toggle('gallery__item-like-btn_active');
     }
   
-    _handleDeleteGalleryCardItem() {
-      this._element.querySelector(".gallery__item-trash-btn").closest('.gallery__item').remove();
+    _handleDeleteGalleryCardItem = () => {
+      this._element.remove();
+      this._element = null;
+      
     }
   
-    _handleOpenImgPopup(){
+    _handleOpenImgPopup = () => {
       const itemImg           = this._element.querySelector(".gallery__item-img");
       const popupImg          = document.querySelector(".popup_type_img");
       const popupImgEl        = popupImg.querySelector(".popup__img");
