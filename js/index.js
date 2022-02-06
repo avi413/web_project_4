@@ -96,7 +96,9 @@ function handleCreateNewCard(evt) {
   addGalleryCardItem(item);
   placeForm.reset();
   utils.closePopup(popupNewCard);
-  newCardValidator.enableValidation();
+  //const form = document.querySelector(".popup__form_type_new-card");
+  //const inputLst = Array.from(form.querySelectorAll(config.inputSelector));
+  newCardValidator.toggleButtonState();
 }
 
 function handleProfileFormSubmit(evt) {
@@ -104,7 +106,7 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = inputName.value;
   profileAboutMe.textContent = inputAboutMe.value;
   utils.closePopup(popupProfile);
-  profileValidator.enableValidation();
+  profileValidator.toggleButtonState();
 }
 
 const newCardValidator = new FormValidator(config,".popup__form_type_new-card");
