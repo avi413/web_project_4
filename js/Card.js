@@ -22,6 +22,7 @@ export default class Card {
   
       this._element.querySelector(".gallery__item-img").src = this._img;
       this._element.querySelector(".gallery__item-name").textContent = this._text;
+      this._element.querySelector(".gallery__item-name").alt = this._text;
       this._setEventListeners();
       return this._element;
     }
@@ -52,7 +53,7 @@ export default class Card {
       const popupImgEl        = popupImg.querySelector(".popup__img");
       const popupImgTitleEl   = popupImg.querySelector(".popup__img-title");
 
-      popupImgTitleEl.textContent = itemImg.alt;
+      popupImgTitleEl.textContent = `Photo of ${this._text}`;
       popupImgEl.src = itemImg.src;
       popupImgEl.alt = itemImg.alt;
       utils.openPopup(popupImg);

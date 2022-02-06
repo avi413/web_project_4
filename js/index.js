@@ -71,6 +71,7 @@ const inputTitle            = placeForm.elements.placeName;
 const inputImageLink        = placeForm.elements.placeImageLink;
 
 
+
 profileEditBtn.addEventListener("click", () => {
   inputName.value  = profileName.textContent;
   inputAboutMe.value  =  profileAboutMe.textContent;
@@ -79,7 +80,7 @@ profileEditBtn.addEventListener("click", () => {
 
 opeNewCardPopupBtn.addEventListener("click", () => utils.openPopup(popupNewCard));
 
-profileFormEl.addEventListener('submit', utils.handleProfileFormSubmit); 
+profileFormEl.addEventListener("submit", handleProfileFormSubmit); 
 newCardFormEl.addEventListener("submit", handleCreateNewCard);
 
 
@@ -96,6 +97,13 @@ function handleCreateNewCard(evt) {
   addGalleryCardItem(item);
   placeForm.reset();
   utils.closePopup(popupNewCard);
+}
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault(); 
+  profileName.textContent = inputName.value;
+  profileAboutMe.textContent = inputAboutMe.value;
+  utils.closePopup(popupProfile);
 }
 
 const newCardValidator = new FormValidator(config,".popup__form_type_new-card");
