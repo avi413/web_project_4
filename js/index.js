@@ -96,8 +96,6 @@ function handleCreateNewCard(evt) {
   addGalleryCardItem(item);
   placeForm.reset();
   utils.closePopup(popupNewCard);
-  //const form = document.querySelector(".popup__form_type_new-card");
-  //const inputLst = Array.from(form.querySelectorAll(config.inputSelector));
   newCardValidator.toggleButtonState();
 }
 
