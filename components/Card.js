@@ -1,4 +1,4 @@
-import * as utils from "./utils.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 export default class Card {
     constructor(data, cardSelector) {
@@ -22,7 +22,6 @@ export default class Card {
   
       this._element.querySelector(".gallery__item-img").src = this._img;
       this._element.querySelector(".gallery__item-name").textContent = this._text;
-      this._element.querySelector(".gallery__item-name").alt = `Photo of ${this._text}`;
       this._setEventListeners();
       return this._element;
     }
@@ -42,16 +41,9 @@ export default class Card {
       this._element = null;
       
     }
-  
+    
     _handleOpenImgPopup = () => {
-      const itemImg           = this._element.querySelector(".gallery__item-img");
-      const popupImg          = document.querySelector(".popup_type_img");
-      const popupImgEl        = popupImg.querySelector(".popup__img");
-      const popupImgTitleEl   = popupImg.querySelector(".popup__img-title");
-
-      popupImgTitleEl.textContent = `Photo of ${this._text}`;
-      popupImgEl.src = itemImg.src;
-      popupImgEl.alt = itemImg.alt;
-      utils.openPopup(popupImg);
+      const popup = new PopupWithImage({src : this._img , title: this._text}, ".popup_type_img");
+      popup.open();
     }
   }
