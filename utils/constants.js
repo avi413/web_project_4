@@ -43,11 +43,11 @@ export const profileName           = document.querySelector(".profile__name");
 export const profileAboutMe        = document.querySelector(".profile__about-me");
 
 /** gallery container */
-const container             = document.querySelector(".gallery");
+const container                     = document.querySelector(".gallery");
 export const galleryListContainer   = container.querySelector(".gallery__list");
 
 /** profile popup elements */
-const profileForm           = document.forms.profileform;
+const profileForm                  = document.forms.profileform;
 export const inputName             = profileForm.elements.profileName;
 export const inputAboutMe          = profileForm.elements.profileAboutMe;
 export const placeForm             = document.forms.placeform;

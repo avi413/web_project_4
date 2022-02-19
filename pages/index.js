@@ -1,6 +1,7 @@
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from  "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import * as constants from "../utils/constants.js"
@@ -15,11 +16,15 @@ const cardList = new Section({
 }, constants.galleryListContainer);
 
 function  addGalleryCardItem (item) {
-  const card = new Card(item, "#gallery-item-template");
+  const card = new Card(item, 
+    "#gallery-item-template",
+    () => {
+      const popup = new PopupWithImage({src : item.link , title: item.name}, ".popup_type_img");
+      popup.open();
+    });
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
-
  
 /**
  * add popup with form to add new card item to gallery
