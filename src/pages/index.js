@@ -1,11 +1,23 @@
-import "./pages/index.css";
-import Section from "./components/Section.js";
-import Card from "./components/Card.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import PopupWithImage from  "./components/PopupWithImage.js";
-import UserInfo from "./components/UserInfo.js";
-import FormValidator from "./components/FormValidator.js";
-import * as constants from "./utils/constants.js"
+import "./index.css";
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from  "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import FormValidator from "../components/FormValidator.js";
+import * as constants from "../utils/constants.js"
+
+/** main buttons */
+const profileEditBtn        = document.querySelector("button.profile__edit-btn");
+const opeNewCardPopupBtn    = document.querySelector("button.profile__add-btn");
+
+/** profile data elements */
+const profileName           = document.querySelector(".profile__name");
+const profileAboutMe        = document.querySelector(".profile__about-me");
+
+/** gallery container */
+const container                     = document.querySelector(".gallery");
+
 
 
 /**
@@ -14,7 +26,7 @@ import * as constants from "./utils/constants.js"
 const cardList = new Section({
   data: constants.initialCards,
   renderer: addGalleryCardItem
-}, constants.galleryListContainer);
+}, constants.galleryListSelector);
 
 function  addGalleryCardItem (item) {
   const card = new Card(item, 
@@ -42,7 +54,7 @@ function handleCreateNewCard (inputs) {
   newCardValidator.toggleButtonState();
 }
 
-constants.opeNewCardPopupBtn.addEventListener("click", () => newCardPopup.open());
+opeNewCardPopupBtn.addEventListener("click", () => newCardPopup.open());
 
 /**
  * add popup with form to edit main user info
@@ -59,7 +71,7 @@ function handleProfileFormSubmit (inputs) {
   profileValidator.toggleButtonState();
 }
 
-constants.profileEditBtn.addEventListener("click", () => {
+profileEditBtn.addEventListener("click", () => {
   const {name, job } = userInfo.getUserInfo();
   constants.inputName.value  = name;
   constants.inputAboutMe.value  = job;

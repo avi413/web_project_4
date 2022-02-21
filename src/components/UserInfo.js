@@ -5,7 +5,7 @@ export default class UserInfo {
      * -Take an object with the selectors of two elements into the constructor: 
      * one containing the user's name, and another containing the user's job.
      */
-    constructor (nameSelector, jobSelector) {
+    constructor ( nameSelector, jobSelector ) {
         this._nameElement = document.querySelector(nameSelector);
         this._jobElement = document.querySelector(jobSelector);
 
