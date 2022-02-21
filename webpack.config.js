@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: ""
+    publicPath: "",
   },
   target: ['web', 'es5'],
   stats: { children: true },
@@ -34,8 +34,11 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader"
+            loader: "css-loader",
+            options: { importLoaders: 1 }
           },
+          // add postcss-loader
+          "postcss-loader"
         ]
       },
       {
