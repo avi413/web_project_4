@@ -353,7 +353,7 @@ template {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(2391725004ae05a27e8e.ttf) format('truetype');
+    src: url(/dist/2391725004ae05a27e8e.ttf) format('truetype');
   }
   
   @font-face {
@@ -361,7 +361,7 @@ template {
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url(e7231ba33760832432b8.ttf) format('truetype');
+    src: url(/dist/e7231ba33760832432b8.ttf) format('truetype');
   }
 
   @font-face {
@@ -369,7 +369,7 @@ template {
     font-style: normal;
     font-weight: 900;
     font-display: swap;
-    src: url(24d6be6c502d39fb3ce1.ttf) format('truetype');
+    src: url(/dist/24d6be6c502d39fb3ce1.ttf) format('truetype');
   }
 .button {
     padding: 0;
@@ -445,7 +445,7 @@ template {
   }
 
   .popup__close::before {
-    content: url(e6c3a9a9a26912881a20.svg);
+    content: url(/dist/e6c3a9a9a26912881a20.svg);
   }
 
   @media screen and (max-width: 640px){
@@ -453,7 +453,7 @@ template {
       margin-left: 250px;
     }
     .popup__close::before {
-      content: url(6b2ce9ca2dd5544f9e7d.svg);
+      content: url(/dist/6b2ce9ca2dd5544f9e7d.svg);
     }
   }
 
@@ -731,7 +731,7 @@ template {
 }
 
 .profile__edit-btn::before {
-    content: url(6c7bf05444b9793fdf6e.svg); 
+    content: url(/dist/6c7bf05444b9793fdf6e.svg); 
 }
 
 @media screen and (max-width: 968px){
@@ -741,7 +741,7 @@ template {
         margin-top: 26px;
     }
     .profile__edit-btn::before {
-        content: url(f0dd9c51cf799b8b82d2.svg);  
+        content: url(/dist/f0dd9c51cf799b8b82d2.svg);  
     }
 }
 .profile__add-btn {
@@ -752,7 +752,7 @@ template {
 }
 
 .profile__add-btn::before {
-    content: url(bed8c136e13907f5eefb.svg);
+    content: url(/dist/bed8c136e13907f5eefb.svg);
 }
 
 @media screen and (max-width: 968px){
@@ -825,7 +825,7 @@ template {
 }
 
 .gallery__item-like-btn::before {
-  content: url(99043841e8bec6b9df21.svg);
+  content: url(/dist/99043841e8bec6b9df21.svg);
 }
 
 .gallery__item-like-btn:hover {
@@ -842,14 +842,14 @@ template {
 }
 
 .gallery__item-trash-btn::before {
-  content: url(c4956c32989e66228de8.svg);
+  content: url(/dist/c4956c32989e66228de8.svg);
 }
 
 .gallery__item-trash-btn:hover {
     opacity: .6;
 }
 .gallery__item-like-btn_active::before {
-    content: url(226461bd64622361ffb2.svg);
+    content: url(/dist/226461bd64622361ffb2.svg);
 }
 .gallery__item-name {
     color: #000;
