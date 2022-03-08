@@ -51,15 +51,16 @@
         </header>
         <main class="content">
             <section class="profile">
+                <p class="profile__error"></p>
                 <div class="profile__info">
-                     <img src="<%=require('./images/jacques-cousteau.jpg')%>" alt="jacques cousteau" class="profile__avatar">
+                     <img class="profile__avatar">
                      <div class="profile__text">
-                         <h1 class="profile__name" >Jacques Cousteau</h1>
-                         <p class="profile__about-me" >Explorer</p>
+                         <h1 class="profile__name"></h1>
+                         <p class="profile__about-me"></p>
                          <button aria-label="edit profile" type="button" class="profile__edit-btn button button_clear button_open button_opacity_m button_border_sm"></button>
                      </div>
-                    
                  </div>
+                 
                  <button  aria-label="add profile" type="button" class="profile__add-btn button button_clear button_open button_opacity_m button_border_m"></button>
              </section>
              <section class="gallery">
@@ -70,7 +71,11 @@
                             <img src="#" class="gallery__item-img">
                             <div class="gallery__item-footer">
                                 <h2 class="gallery__item-name"></h2>
-                                <button aria-label="like button" type="button" class="gallery__item-like-btn button button_clear"></button>
+                                <div class="gllery__like">
+                                    <button aria-label="like button" type="button" class="gallery__like-btn button button_clear"></button>
+                                    <p class="gllery__like-count">0</p>
+                                </div>
+
                             </div>
                         </li>                     
                     </template>

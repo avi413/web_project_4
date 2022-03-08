@@ -28,6 +28,7 @@
 @import url("../blocks/header/header.css");
 @import url("../blocks/header/__logo/header__logo.css");
 @import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/__error/profile__error.css");
 @import url("../blocks/profile/__avatar/profile__avatar.css");
 @import url("../blocks/profile/__info/profile__info.css");
 @import url("../blocks/profile/__text/profile__text.css");
@@ -40,9 +41,11 @@
 @import url("../blocks/gallery/__item/gallery__item.css");
 @import url("../blocks/gallery/__item-img/gallery__item-img.css");
 @import url("../blocks/gallery/__item-footer/gallery__item-footer.css");
-@import url("../blocks/gallery/__item-like-btn/gallery__item-like-btn.css");
+@import url("../blocks/gallery/__like-btn/gallery__like-btn.css");
+@import url("../blocks/gallery/__like/gllery__like.css");
+@import url("../blocks/gallery/__like-count/gllery__like-count.css");
 @import url("../blocks/gallery/__item-trash-btn/gallery__item-trash-btn.css");
-@import url("../blocks/gallery/__item-like-btn/_active/gallery__item-like-btn_active.css");
+@import url("../blocks/gallery/__like-btn/_active/gallery__like-btn_active.css");
 @import url("../blocks/gallery/__item-name/gallery__item-name.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__author/footer__author.css");

@@ -5,9 +5,10 @@ export default class UserInfo {
      * -Take an object with the selectors of two elements into the constructor: 
      * one containing the user's name, and another containing the user's job.
      */
-    constructor ( nameSelector, jobSelector ) {
+    constructor ( nameSelector, jobSelector, avatarSelector = null) {
         this._nameElement = document.querySelector(nameSelector);
         this._jobElement = document.querySelector(jobSelector);
+        this._avatar = document.querySelector(avatarSelector);
 
     }
 
@@ -23,11 +24,17 @@ export default class UserInfo {
         }
     }
 
-    setUserInfo({name, job}){
+    setUserInfo(data){
         /**
          * takes new user data and adds it on the page.
          */
-        this._nameElement.textContent = name;
-        this._jobElement.textContent = job;
+        this._nameElement.textContent   = data.name;
+        this._nameElement.id            = data._id;
+        this._jobElement.textContent    = data.about;
+
+    }
+    setUserAvatar({avatar, name}) {
+        this._avatar.src = avatar;
+        this._avatar.alt = name;
     }
 }

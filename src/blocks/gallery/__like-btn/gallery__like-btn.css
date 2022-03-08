@@ -1,12 +1,12 @@
-.gallery__item-like-btn {
+.gallery__like-btn {
     width: 21px;
     height: 19px;
 }
 
-.gallery__item-like-btn::before {
+.gallery__like-btn::before {
   content: url("../../../images/like.svg");
 }
 
-.gallery__item-like-btn:hover {
+.gallery__like-btn:hover {
     opacity: .5;
 }
