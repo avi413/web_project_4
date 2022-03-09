@@ -1,30 +1,21 @@
 import Popup from "./Popup.js";
-export default class PopupWithForm  extends Popup {
-        constructor ( popupSelector, handleFormSubmit ) {
+
+export default class PopupWIthConfirm  extends Popup {
+        constructor ( popupSelector, handleConfirm ) {
             super(popupSelector);
-            this._handleFormSubmit  =   handleFormSubmit;
+            this._handleConfirm     =   handleConfirm;
             this._formElemet        =   this._popup.querySelector(".popup__form");
         }
 
-        _getInputValues() {
-            const inputValues = {};
-            const inputsArr = this._formElemet.querySelectorAll(".popup__input");
-            inputsArr.forEach(input => {
-                inputValues[input.name] = [input.value];
-            })
-
-            return inputValues;
-        }
 
         setEventListeners() {
             /**
              * It modifies the setEventListeners() parent method. 
-             * The setEventListeners() method of the PopupWithForm class
              *  has to add the submit event handler to the form and the click 
              * event listener to the close icon.
              */
             super.setEventListeners();
-            this._formElemet.addEventListener("submit", this._handleSubmit); 
+            this._formElemet.addEventListener("submit",  this._handleSubmit); 
         }
 
         removeEventListeners() {
@@ -33,10 +24,14 @@ export default class PopupWithForm  extends Popup {
         
         _handleSubmit =(evt) =>{
             evt.preventDefault(); 
-            const inputs =  this._getInputValues();
-            this._handleFormSubmit(inputs);
+            this._handleConfirm(this._popup.id);
             this.close();
-          }
+        }
+
+        open(id) {
+            super.open();
+            this._popup.id =id;
+        }
 
         close() {
             /**

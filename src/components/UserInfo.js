@@ -20,7 +20,7 @@ export default class UserInfo {
          */
         return {
             name: this._nameElement.textContent,
-            job: this._jobElement.textContent
+            about: this._jobElement.textContent
         }
     }
 

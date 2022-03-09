@@ -37,14 +37,25 @@
             </form>
         </div>
     </div>
+
+    <div class="popup popup_type_delete">
+        <button aria-label="close popup" class="popup__close popup__close_place_delete button button_opacity_m"></button>
+        <div class="popup__container">
+            <h2 class="popup__title">Are you sure?</h2>
+            <form action="#" class="popup__form popup__form_type_delete" name="placeform" novalidate>
+                <button type="submit" class="popup__submit-btn popup__submit-btn_place_delete button button_opacity_h">Yes</button>
+            </form>
+        </div>
+    </div>
+
     <div class="popup popup_type_img">
         <div class="popup__img-container">
             <button aria-label="close popup" class="popup__close popup__close_place_img button button_opacity_m"></button>
             <img src="#" alt="popup img" class="popup__img">
             <p class="popup__img-title"></p>
         </div>
-
     </div>
+
     <div class="page">
         <header class="header">
             <img src="<%=require('./images/logo.svg')%>" alt="Around The U.S. logo" class="header__logo">

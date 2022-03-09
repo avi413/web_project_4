@@ -25,10 +25,10 @@ export default class Api {
       return this._call("/users/me",'GET');
     }
     
-    editProfile({name, job}) {
+    editProfile({name, about}) {
       return this._call("/users/me",'PATCH',{
         name: name[0],
-        about: job[0]
+        about: about[0]
       });
     }
 
@@ -45,6 +45,10 @@ export default class Api {
 
     deleteLike = (cardId) => {
       return this._call(`/cards/likes/${cardId}`,'DELETE');
+    }
+
+    deleteCard = (cardId) => {
+      return this._call(`/cards/${cardId}`,'DELETE');
     }
 
     init() {

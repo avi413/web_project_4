@@ -3,6 +3,7 @@ import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from  "../components/PopupWithImage.js";
+import PopupWIthConfirm from "../components/PopupWIthConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import * as constants from "../utils/constants.js";
@@ -17,6 +18,7 @@ const profileAboutMe        = document.querySelector(".profile__about-me");
 const profileAvatar         = document.querySelector(".profile__avatar");
 /** gallery container */
 const container             = document.querySelector(".gallery");
+
 
 const initCards = new Array();
 
@@ -41,6 +43,7 @@ api.init()
 .catch ((err) => {
   handleError(err);
 })
+
 function handleError(err) {
   const errorEl = document.querySelector(".profile__error");
   errorEl.textContent = err;
@@ -55,6 +58,10 @@ function  addGalleryCardItem (item) {
     () => {
       const popup = new PopupWithImage({src : item.link , title: item.name}, ".popup_type_img");
       popup.open();
+    },
+    () => {
+      const popupConfirm = new PopupWIthConfirm(".popup_type_delete", handleDelete);
+      popupConfirm.open(item._id);
     },api);
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
@@ -67,8 +74,20 @@ const newCardPopup = new PopupWithForm (
   handleCreateNewCard
 );
 
+function handleDelete(itemId) {
+  api.deleteCard(itemId)
+  .then(() =>{
+    let item = document.querySelector(".gallery__item");
+    item.remove();
+    item = null;
+  })
+  .catch(err => {
+    alert(err);
+  })
+}
+
 function handleCreateNewCard (inputs) {
-  addGalleryCardItem({link: inputs.placeImageLink, name: inputs.placeName});
+  addGalleryCardItem({link: inputs.placeImageLink, name: inputs.placeName, owner: {_id: profileName.id}});
   api.createNewCard(inputs.placeImageLink,inputs.placeName)
   .then(data => {
     console.log(data)
@@ -92,8 +111,8 @@ const profilePopup = new PopupWithForm (
 );
 
 function handleProfileFormSubmit (inputs) {
-  userInfo.setUserInfo({name: inputs.profileName, job: inputs.profileAboutMe})
-  api.editProfile({name: inputs.profileName, job: inputs.profileAboutMe})
+  userInfo.setUserInfo({name: inputs.profileName, about: inputs.profileAboutMe})
+  api.editProfile({name: inputs.profileName, about: inputs.profileAboutMe})
   .catch ((err) => {
     console.log(err);
   })
@@ -102,9 +121,9 @@ function handleProfileFormSubmit (inputs) {
 }
 
 profileEditBtn.addEventListener("click", () => {
-  const {name, job } = userInfo.getUserInfo();
+  const {name, about } = userInfo.getUserInfo();
   constants.inputName.value  = name;
-  constants.inputAboutMe.value  = job;
+  constants.inputAboutMe.value  = about;
   profilePopup.open();
 });
 
