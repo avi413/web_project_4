@@ -65,6 +65,9 @@ const userInfo  = new UserInfo(".profile__name", ".profile__about-me", ".profile
 function handleEditAvatar (inputs) {
   renderLoading(false, ".popup__submit-btn_place_avatar");
   api.editProfileAvatar(inputs.avatarImageLink)
+  .catch ((err) => {
+    handleError(err);
+  })
   .finally(() =>{
     renderLoading(false, ".popup__submit-btn_place_avatar");
   })
