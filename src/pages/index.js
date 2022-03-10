@@ -44,14 +44,36 @@ api.init()
   handleError(err);
 })
 
+/**
+ * set Error description on top of the page
+ */
 function handleError(err) {
   const errorEl = document.querySelector(".profile__error");
   errorEl.textContent = err;
   errorEl.style.display  = "block";
 }
-const cardList  = new Section({data: initCards, renderer: addGalleryCardItem}, constants.galleryListSelector);
-const userInfo  = new UserInfo(".profile__name", ".profile__about-me", ".profile__avatar");
 
+const cardList  = new Section({data: initCards, renderer: addGalleryCardItem}, constants.galleryListSelector);
+const userInfo  = new UserInfo(".profile__name", ".profile__about-me", ".profile__avatar", () => {
+  const EditAvatarPopup = new PopupWithForm(".popup_type_avatar", handleEditAvatar);
+  EditAvatarPopup.open();
+});
+
+/**
+ * handle edit pofile avatar image
+ */
+function handleEditAvatar (inputs) {
+  renderLoading(false, ".popup__submit-btn_place_avatar");
+  api.editProfileAvatar(inputs.avatarImageLink)
+  .finally(() =>{
+    renderLoading(false, ".popup__submit-btn_place_avatar");
+  })
+  userInfo.setUserAvatar({avatar: inputs.avatarImageLink})
+}
+
+/**
+ * add new card item to gallery
+ */
 function  addGalleryCardItem (item) {
   const card = new Card(item, 
     "#gallery-item-template",
@@ -61,11 +83,12 @@ function  addGalleryCardItem (item) {
     },
     () => {
       const popupConfirm = new PopupWIthConfirm(".popup_type_delete", handleDelete);
-      popupConfirm.open(item._id);
+      popupConfirm.open(item._id, cardElement);
     },api);
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
 }
+
 /**
  * add popup with form to add new card item to gallery
  */
@@ -74,19 +97,25 @@ const newCardPopup = new PopupWithForm (
   handleCreateNewCard
 );
 
-function handleDelete(itemId) {
+/**
+ * delete card item from gallery
+ */
+function handleDelete(itemId, card) {
   api.deleteCard(itemId)
   .then(() =>{
-    let item = document.querySelector(".gallery__item");
-    item.remove();
-    item = null;
+    card.remove();
+    card = null;
   })
   .catch(err => {
-    alert(err);
+    console.log(err);
   })
 }
 
+/**
+ * add new card item to gallery
+ */
 function handleCreateNewCard (inputs) {
+  renderLoading(true, ".popup__submit-btn_place_new-card");
   addGalleryCardItem({link: inputs.placeImageLink, name: inputs.placeName, owner: {_id: profileName.id}});
   api.createNewCard(inputs.placeImageLink,inputs.placeName)
   .then(data => {
@@ -94,6 +123,9 @@ function handleCreateNewCard (inputs) {
   })
   .catch ((err) => {
     handleError(err);
+  })
+  .finally(() =>{
+    renderLoading(false, ".popup__submit-btn_place_new-card");
   })
   constants.placeForm.reset();
   newCardPopup.close();
@@ -110,16 +142,25 @@ const profilePopup = new PopupWithForm (
    handleProfileFormSubmit
 );
 
+/**
+ * edit user profile data
+ */
 function handleProfileFormSubmit (inputs) {
+  renderLoading(true, ".popup__submit-btn_place_profile");
   userInfo.setUserInfo({name: inputs.profileName, about: inputs.profileAboutMe})
   api.editProfile({name: inputs.profileName, about: inputs.profileAboutMe})
   .catch ((err) => {
     console.log(err);
   })
-
+  .finally(() =>{
+    renderLoading(false, ".popup__submit-btn_place_profile");
+  })
   profileValidator.toggleButtonState();
 }
 
+/**
+ * add event listener to edit user profile info
+ */
 profileEditBtn.addEventListener("click", () => {
   const {name, about } = userInfo.getUserInfo();
   constants.inputName.value  = name;
@@ -127,12 +168,27 @@ profileEditBtn.addEventListener("click", () => {
   profilePopup.open();
 });
 
+/**
+ * change button text to ..saving until process ends
+ */
+function renderLoading(isLoading, btnSelector) {
+  const btnEl = document.querySelector(btnSelector);
+  if(isLoading) {
+    btnEl.textContent = "...Saving"; 
+  }
+  else {
+    btnEl.textContent = "Save"; 
+  }
+}
 
 /**
  * add form validation for all forms
  */
 const newCardValidator = new FormValidator(constants.config,".popup__form_type_new-card");
 newCardValidator.enableValidation();
+
+const editAvatarValidator = new FormValidator(constants.config,".popup__form_type_avatar");
+editAvatarValidator.enableValidation();
 
 const profileValidator = new FormValidator(constants.config,".popup__form_type_profile");
 profileValidator.enableValidation();

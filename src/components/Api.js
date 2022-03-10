@@ -51,6 +51,12 @@ export default class Api {
       return this._call(`/cards/${cardId}`,'DELETE');
     }
 
+    editProfileAvatar(url){
+      return this._call("/users/me/avatar ",'PATCH',{
+        avatar : url[0]
+      });
+    }
+
     init() {
       return Promise.all([this.getUserData(), this.getInitialCards()]);
     }

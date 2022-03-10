@@ -5,10 +5,11 @@ export default class UserInfo {
      * -Take an object with the selectors of two elements into the constructor: 
      * one containing the user's name, and another containing the user's job.
      */
-    constructor ( nameSelector, jobSelector, avatarSelector = null) {
+    constructor ( nameSelector, jobSelector, avatarSelector = null, handleEditAvatar) {
         this._nameElement = document.querySelector(nameSelector);
         this._jobElement = document.querySelector(jobSelector);
         this._avatar = document.querySelector(avatarSelector);
+        this._handleEditAvatar = handleEditAvatar;
     }
 
     getUserInfo() {
@@ -30,10 +31,17 @@ export default class UserInfo {
         this._nameElement.textContent   = data.name;
         this._nameElement.id            = data._id;
         this._jobElement.textContent    = data.about;
+        this._setEventListeners();
 
     }
-    setUserAvatar({avatar, name}) {
+    setUserAvatar({avatar, name = null}) {
         this._avatar.src = avatar;
-        this._avatar.alt = name;
+        if(name){
+            this._avatar.alt = name;
+        }
     }
+
+    _setEventListeners() {
+        document.querySelector(".profile__edit-avatar").addEventListener("click",  this._handleEditAvatar);
+      }
 }

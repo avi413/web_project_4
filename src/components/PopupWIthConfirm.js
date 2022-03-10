@@ -24,13 +24,14 @@ export default class PopupWIthConfirm  extends Popup {
         
         _handleSubmit =(evt) =>{
             evt.preventDefault(); 
-            this._handleConfirm(this._popup.id);
+            this._handleConfirm(this._popup.id, this._cardEl);
             this.close();
         }
 
-        open(id) {
+        open(id, cardEl) {
             super.open();
             this._popup.id =id;
+            this._cardEl = cardEl
         }
 
         close() {

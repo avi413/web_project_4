@@ -71,7 +71,7 @@ export default class Card {
     _setEventListeners() {
 
       this._element.querySelector(".gallery__like-btn").addEventListener("click",  this._handleLikeBtn);
-      this._element.querySelector(".gallery__item-trash-btn").addEventListener("click",this._handleTrashClick);
+      this._element.querySelector(".gallery__item-trash-btn").addEventListener("click",() =>{this._handleTrashClick(this._id, this._element)});
       this._element.querySelector(".gallery__item-img").addEventListener("click", this._handleCardClick);
     }
   
