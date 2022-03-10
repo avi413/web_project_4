@@ -3,7 +3,7 @@ import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from  "../components/PopupWithImage.js";
-import PopupWIthConfirm from "../components/PopupWIthConfirm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import * as constants from "../utils/constants.js";
@@ -82,7 +82,7 @@ function  addGalleryCardItem (item) {
       popup.open();
     },
     () => {
-      const popupConfirm = new PopupWIthConfirm(".popup_type_delete", handleDelete);
+      const popupConfirm = new PopupWithConfirmation(".popup_type_delete", handleDelete);
       popupConfirm.open(item._id, cardElement);
     },api);
   const cardElement = card.generateCard();
