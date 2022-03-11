@@ -7,20 +7,28 @@ import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import * as constants from "../utils/constants.js";
-import Api from "../components/Api.js"
+import Api from "../components/Api.js";
+
 /** main buttons */
 const profileEditBtn        = document.querySelector("button.profile__edit-btn");
 const opeNewCardPopupBtn    = document.querySelector("button.profile__add-btn");
-
+const avatarEditBtn         = document.querySelector(".profile__edit-avatar")
 /** profile data elements */
 const profileName           = document.querySelector(".profile__name");
-const profileAboutMe        = document.querySelector(".profile__about-me");
-const profileAvatar         = document.querySelector(".profile__avatar");
-/** gallery container */
-const container             = document.querySelector(".gallery");
 
 
 const initCards = new Array();
+
+const popupCardItem       = new PopupWithImage(".popup__img", ".popup__img-title", ".popup_type_img");
+const popupConfirm        = new PopupWithConfirmation(".popup_type_delete", handleDelete);
+const EditAvatarPopup     = new PopupWithForm(".popup_type_avatar", handleEditAvatar);
+const newCardPopup        = new PopupWithForm (".popup_type_new-card", handleCreateNewCard);
+const profilePopup        = new PopupWithForm (".popup_type_profile",  handleProfileFormSubmit);
+const cardList            = new Section({data: initCards, renderer: addGalleryCardItem}, constants.galleryListSelector);
+const userInfo            = new UserInfo(".profile__name", ".profile__about-me", ".profile__avatar");
+
+
+avatarEditBtn.addEventListener("click",  () => {EditAvatarPopup.open()});
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -53,61 +61,49 @@ function handleError(err) {
   errorEl.style.display  = "block";
 }
 
-const cardList  = new Section({data: initCards, renderer: addGalleryCardItem}, constants.galleryListSelector);
-const userInfo  = new UserInfo(".profile__name", ".profile__about-me", ".profile__avatar", () => {
-  const EditAvatarPopup = new PopupWithForm(".popup_type_avatar", handleEditAvatar);
-  EditAvatarPopup.open();
-});
-
 /**
  * handle edit pofile avatar image
  */
 function handleEditAvatar (inputs) {
-  renderLoading(false, ".popup__submit-btn_place_avatar");
+  renderLoading(true, ".popup__submit-btn_place_avatar");
   api.editProfileAvatar(inputs.avatarImageLink)
+  .then (() => {
+    userInfo.setUserAvatar({avatar: inputs.avatarImageLink})
+    EditAvatarPopup.close();
+  })
   .catch ((err) => {
     handleError(err);
   })
   .finally(() =>{
     renderLoading(false, ".popup__submit-btn_place_avatar");
   })
-  userInfo.setUserAvatar({avatar: inputs.avatarImageLink})
+  
 }
 
 /**
  * add new card item to gallery
  */
 function  addGalleryCardItem (item) {
-  const card = new Card(item, 
+  const card = new Card(
+    item, 
     "#gallery-item-template",
-    () => {
-      const popup = new PopupWithImage({src : item.link , title: item.name}, ".popup_type_img");
-      popup.open();
-    },
-    () => {
-      const popupConfirm = new PopupWithConfirmation(".popup_type_delete", handleDelete);
-      popupConfirm.open(item._id, cardElement);
-    },api);
+    () => { popupCardItem.open(item.link, item.name); },
+    () => { popupConfirm.open(item._id, cardElement); },
+    api);
   const cardElement = card.generateCard();
   cardList.addItem(cardElement);
+  return cardElement;
 }
-
-/**
- * add popup with form to add new card item to gallery
- */
-const newCardPopup = new PopupWithForm (
-  ".popup_type_new-card",
-  handleCreateNewCard
-);
 
 /**
  * delete card item from gallery
  */
-function handleDelete(itemId, card) {
-  api.deleteCard(itemId)
+function handleDelete(card) {
+  api.deleteCard(card.id)
   .then(() =>{
     card.remove();
     card = null;
+    popupConfirm.close();
   })
   .catch(err => {
     console.log(err);
@@ -117,12 +113,18 @@ function handleDelete(itemId, card) {
 /**
  * add new card item to gallery
  */
+ opeNewCardPopupBtn.addEventListener("click", () => newCardPopup.open());
+
 function handleCreateNewCard (inputs) {
+  const newCard = addGalleryCardItem({link: inputs.placeImageLink, name: inputs.placeName, owner: {_id: profileName.id}});
+
   renderLoading(true, ".popup__submit-btn_place_new-card");
-  addGalleryCardItem({link: inputs.placeImageLink, name: inputs.placeName, owner: {_id: profileName.id}});
   api.createNewCard(inputs.placeImageLink,inputs.placeName)
   .then(data => {
-    console.log(data)
+    newCard.id = data._id;
+    newCardPopup.close();
+    constants.placeForm.reset();
+    newCardValidator.toggleButtonState();
   })
   .catch ((err) => {
     handleError(err);
@@ -130,28 +132,18 @@ function handleCreateNewCard (inputs) {
   .finally(() =>{
     renderLoading(false, ".popup__submit-btn_place_new-card");
   })
-  constants.placeForm.reset();
-  newCardPopup.close();
-  newCardValidator.toggleButtonState();
 }
-
-opeNewCardPopupBtn.addEventListener("click", () => newCardPopup.open());
-
-/**
- * add popup with form to edit main user info
- */
-const profilePopup = new PopupWithForm (
-  ".popup_type_profile",
-   handleProfileFormSubmit
-);
 
 /**
  * edit user profile data
  */
 function handleProfileFormSubmit (inputs) {
-  renderLoading(true, ".popup__submit-btn_place_profile");
   userInfo.setUserInfo({name: inputs.profileName, about: inputs.profileAboutMe})
+  renderLoading(true, ".popup__submit-btn_place_profile");
   api.editProfile({name: inputs.profileName, about: inputs.profileAboutMe})
+  .then (() => {
+    profilePopup.close();
+  })
   .catch ((err) => {
     console.log(err);
   })

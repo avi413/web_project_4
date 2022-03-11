@@ -91,31 +91,4 @@ export default class Card {
       
       
     }
-       /*
-    _handleDeleteGalleryCardItem = () => {
-     
-
-      this._deleteCard(this._element.id)
-      .then(() =>{
-        this._element.remove();
-        this._element = null;
-      })
-      .catch(err => {
-        alert(err);
-      })
-
-      
-    }
-
-    _handleDelete = () => {
-      this._deleteCard(this._element.id)
-      .then(() =>{
-        this._element.remove();
-        this._element = null;
-      })
-      .catch(err => {
-        alert(err);
-      })
-    }
-        */
   }

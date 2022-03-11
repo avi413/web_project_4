@@ -24,7 +24,7 @@ export default class PopupWithConfirmation  extends Popup {
         
         _handleSubmit =(evt) =>{
             evt.preventDefault(); 
-            this._handleConfirm(this._popup.id, this._cardEl);
+            this._handleConfirm(this._cardEl);
             this.close();
         }
 
