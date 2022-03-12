@@ -1,4 +1,4 @@
-export const config = {
+const config = {
     formSelector: ".popup__form",
     formInputsFieldSet: ".popup__form-set",
     inputSelector: ".popup__input",
@@ -11,9 +11,11 @@ export const config = {
 
 /** profile popup elements */
 const profileForm                  = document.forms.profileform;
-export const inputName             = profileForm.elements.profileName;
-export const inputAboutMe          = profileForm.elements.profileAboutMe;
-export const placeForm             = document.forms.placeform;
+const inputName             = profileForm.elements.profileName;
+const inputAboutMe          = profileForm.elements.profileAboutMe;
+const placeForm             = document.forms.placeform;
 
-export const galleryListSelector  = ".gallery__list";
+const galleryListSelector  = ".gallery__list";
+
+export {config, inputName, inputAboutMe, placeForm, galleryListSelector}
 

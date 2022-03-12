@@ -38,7 +38,7 @@ export default class Api {
         link: link[0]
       });
     }
-
+    
     addLike = (cardId) => {
       return this._call(`/cards/likes/${cardId}`,'PUT');
     }

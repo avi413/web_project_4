@@ -2,18 +2,17 @@ import Popup from "./Popup.js";
 export default class PopupWithForm  extends Popup {
         constructor ( popupSelector, handleFormSubmit ) {
             super(popupSelector);
-            this._handleFormSubmit  =   handleFormSubmit;
-            this._formElemet        =   this._popup.querySelector(".popup__form");
+            this._handleFormSubmit  = handleFormSubmit;
+            this._formElemet        = this._popup.querySelector(".popup__form");
+            this._inputsArr         = this._formElemet.querySelectorAll(".popup__input");
+            this._inputValues       = {};
         }
 
         _getInputValues() {
-            const inputValues = {};
-            const inputsArr = this._formElemet.querySelectorAll(".popup__input");
-            inputsArr.forEach(input => {
-                inputValues[input.name] = [input.value];
+            this._inputsArr.forEach(input => {
+                this._inputValues [input.name] = [input.value];
             })
-
-            return inputValues;
+            return this._inputValues ;
         }
 
         setEventListeners() {
@@ -28,14 +27,27 @@ export default class PopupWithForm  extends Popup {
         }
 
         removeEventListeners() {
+            super.removeEventListeners()
             this._formElemet.removeEventListener("submit", this._handleSubmit); 
         }
         
         _handleSubmit =(evt) =>{
             evt.preventDefault(); 
-            const inputs =  this._getInputValues();
-            this._handleFormSubmit(inputs);
-          }
+            this._handleFormSubmit(this._getInputValues());
+        }
+
+        /**
+         * change button text to ..saving until process ends
+         */
+        renderLoading(isLoading, btnSelector) {
+            const btnEl = document.querySelector(btnSelector);
+            if(isLoading) {
+            btnEl.textContent = "...Saving"; 
+            }
+            else {
+            btnEl.textContent = "Save"; 
+            }
+        }
 
         close() {
             /**
@@ -44,7 +56,6 @@ export default class PopupWithForm  extends Popup {
              */
             super.close();
             this._formElemet.reset();
-            this.removeEventListeners();
         }
 
 }

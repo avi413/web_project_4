@@ -19,6 +19,7 @@ export default class PopupWithConfirmation  extends Popup {
         }
 
         removeEventListeners() {
+            super.removeEventListeners()
             this._formElemet.removeEventListener("submit", this._handleSubmit); 
         }
         
@@ -27,20 +28,8 @@ export default class PopupWithConfirmation  extends Popup {
             this._handleConfirm(this._cardEl);
         }
 
-        open(id, cardEl) {
+        open(cardEl) {
             super.open();
-            this._popup.id =id;
-            this._cardEl = cardEl
+            this._cardEl = cardEl;
         }
-
-        close() {
-            /**
-             * It modifies the close() parent method 
-             * in order to reset the form once the popup is closed.
-             */
-            super.close();
-            this._formElemet.reset();
-            this.removeEventListeners();
-        }
-
 }

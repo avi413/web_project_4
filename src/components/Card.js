@@ -1,5 +1,5 @@
 export default class Card {
-    constructor( data, cardSelector, handleCardClick, handleTrashClick, api) {
+    constructor( data, cardSelector, handleCardClick, handleTrashClick, handleLike, api) {
       this._text              = data.name;
       this._img              = data.link;
       this._id                = data._id;
@@ -11,51 +11,47 @@ export default class Card {
       this._addLike           = api.addLike;
       this._deleteLike        = api.deleteLike;
       this._deleteCard        = api.deleteCard;
+      this._handleLike        = handleLike;
+      this._element           = document.querySelector(this._cardSelector).content.querySelector(".gallery__item").cloneNode(true);
+      this._itemImgEl         = this._element.querySelector(".gallery__item-img");
+      this._itemNameEl        = this._element.querySelector(".gallery__item-name");
+      this.profileEl          = document.querySelector(".profile__name");
+      this._itemTrashBtn      = this._element.querySelector(".gallery__item-trash-btn");
+      this._itemLikeBtn       = this._element.querySelector(".gallery__like-btn");
+      this._gallerylikeCount  = this._element.querySelector(".gllery__like-count");
     }
-  
-    _getTemplate() {
-      const cardElement = document
-        .querySelector(this._cardSelector)
-        .content
-        .querySelector(".gallery__item")
-        .cloneNode(true);
-  
-      return cardElement;
-    }
-  
-    generateCard() {
-      this._element = this._getTemplate();
-      const galleryItemImg = this._element.querySelector(".gallery__item-img");
-      const galleryItemName = this._element.querySelector(".gallery__item-name");
-      const myId = document.querySelector(".profile__name").id;
 
-      galleryItemImg.src = this._img;
-      galleryItemImg.alt = this._text;
-      galleryItemName.textContent = this._text;
+    getId() {
+      return this._id;
+    }
+
+    generateCard() {
+      this._itemImgEl.src = this._img;
+      this._itemNameEl.alt = this._text;
+      this._itemNameEl.textContent = this._text;
  
       this._element.id = this._id;
-      this._initLike(myId);
-      this. _deleteIconVisibility(myId);
+      this._initLike(this.profileEl.id);
+      this. _deleteIconVisibility(this.profileEl.id);
       this._setEventListeners();
       return this._element;
     }
   
     _deleteIconVisibility(userId){
       if(userId !=  this._Cardowner._id) {
-        this._element.querySelector(".gallery__item-trash-btn").style.visibility = "hidden";
+        this._itemTrashBtn.style.visibility = "hidden";
       }
     }
 
     _initLike(userId){
       if(this._userExists(userId)) {
-        this._element.querySelector(".gallery__like-btn").classList.add('gallery__like-btn_active'); 
+        this._itemLikeBtn.classList.add('gallery__like-btn_active'); 
       }
-      const gallerylikeCount = this._element.querySelector(".gllery__like-count");
       if(typeof this._likes !== "undefined"){
-        gallerylikeCount.textContent = this._likes.length;
+        this._gallerylikeCount.textContent = this._likes.length;
       }
       else {
-        gallerylikeCount.textContent  = 0;
+        this._gallerylikeCount.textContent  = 0;
       }
     }
 
@@ -69,26 +65,27 @@ export default class Card {
     }
 
     _setEventListeners() {
-
-      this._element.querySelector(".gallery__like-btn").addEventListener("click",  this._handleLikeBtn);
-      this._element.querySelector(".gallery__item-trash-btn").addEventListener("click",() =>{this._handleTrashClick(this._id, this._element)});
-      this._element.querySelector(".gallery__item-img").addEventListener("click", this._handleCardClick);
+      this._itemLikeBtn.addEventListener("click",() =>  {this._handleLike(this)});
+      this._itemTrashBtn.addEventListener("click",() =>{this._handleTrashClick(this)});
+      this._itemImgEl.addEventListener("click", this._handleCardClick);
     }
-  
-    _handleLikeBtn = () => {
-      const likeBtn = this._element.querySelector(".gallery__like-btn");
-      const gallerylikeCount = this._element.querySelector(".gllery__like-count");
-      if(likeBtn.classList.contains('gallery__like-btn_active')){
-        this._deleteLike(this._element.id);
-        gallerylikeCount.textContent --;
+    /**
+     * Decide whether to delete or add a Like depending on an existing situation
+     */
+    updateLikes() {
+      if(this._itemLikeBtn.classList.contains('gallery__like-btn_active')){
+        return this._deleteLike(this._element.id);
       }
       else {
-        this._addLike(this._element.id);
-        gallerylikeCount.textContent ++;
+        return this._addLike(this._element.id);
       }
-      this._element.querySelector(".gallery__like-btn").classList.toggle('gallery__like-btn_active');
+    }
 
-      
-      
+    /**
+     * Dealing with the success of updating Like on the server (.then)
+     */
+    setLikes(data) {
+      this._gallerylikeCount.textContent = data.likes.length;
+      this._itemLikeBtn.classList.toggle('gallery__like-btn_active');
     }
   }

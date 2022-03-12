@@ -43,7 +43,7 @@
             <h2 class="popup__title">New place</h2>
             <form action="#" class="popup__form popup__form_type_new-card" name="placeform" novalidate>
                 <fieldset class="popup__form-set">
-                    <input id="card-title-input"  class="popup__input popup__input-text popup__input-text_type_title" required type="text" placeholder="Title" name="placeName" minlength="1" maxlength="30">
+                    <input id="card-title-input"  class="popup__input popup__input-text popup__input-text_type_title" required type="text" placeholder="Title" name="placeName" minlength="2" maxlength="30">
                     <span class="popup__input-error card-title-input-error"></span>
                     <input  id="card-link-input" class="popup__input popup__input-text popup__input-text_type_Image-link" required type="url" placeholder="Image link" name="placeImageLink">
                     <span class="popup__input-error card-link-input-error"></span>
@@ -57,7 +57,7 @@
         <button aria-label="close popup" class="popup__close popup__close_place_delete button button_opacity_m"></button>
         <div class="popup__container">
             <h2 class="popup__title">Are you sure?</h2>
-            <form action="#" class="popup__form popup__form_type_delete" name="placeform" novalidate>
+            <form action="#" class="popup__form popup__form_type_delete" name="placedelete" novalidate>
                 <button type="submit" class="popup__submit-btn popup__submit-btn_place_delete button button_opacity_h">Yes</button>
             </form>
         </div>
