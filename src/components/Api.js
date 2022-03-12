@@ -27,15 +27,15 @@ export default class Api {
     
     editProfile({name, about}) {
       return this._call("/users/me",'PATCH',{
-        name: name[0],
-        about: about[0]
+        name: name,
+        about: about
       });
     }
 
     createNewCard (link, name) {
       return this._call("/cards",'POST',{
-        name: name[0],
-        link: link[0]
+        name: name,
+        link: link
       });
     }
     
@@ -53,7 +53,7 @@ export default class Api {
 
     editProfileAvatar(url){
       return this._call("/users/me/avatar ",'PATCH',{
-        avatar : url[0]
+        avatar : url
       });
     }
 
