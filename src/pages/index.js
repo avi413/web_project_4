@@ -26,7 +26,7 @@ const userInfo            = new UserInfo(".profile__name", ".profile__about-me",
 
 const formValidators = {};
 
-avatarEditBtn.addEventListener("click",  () => {editAvatarPopup.open()});
+avatarEditBtn.addEventListener("click",  () => {editAvatarPopup.open(formValidators["avatarform"].resetValidation())});
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -61,7 +61,6 @@ function handleEditAvatar (inputs) {
   .then (() => {
     userInfo.setUserAvatar({avatar: inputs.avatarImageLink})
     editAvatarPopup.close();
-    formValidators["avatarform"].toggleButtonState();
   })
   .catch ((err) => {
     handleError(err);
@@ -81,7 +80,6 @@ function handleEditAvatar (inputs) {
   .then (() => {
     userInfo.setUserInfo({name: inputs.profileName, about: inputs.profileAboutMe})
     profilePopup.close();
-    () => formValidators["profileform"].toggleButtonState();
   })
   .catch ((err) => {
     console.log(err);
@@ -94,7 +92,7 @@ function handleEditAvatar (inputs) {
 /**
  * add new card item to gallery
  */
- opeNewCardPopupBtn.addEventListener("click", () => newCardPopup.open());
+ opeNewCardPopupBtn.addEventListener("click", () => newCardPopup.open( formValidators["placeform"].resetValidation()));
 
  function createCard (item) {
   const card = new Card(
@@ -118,7 +116,6 @@ function handleCreateNewCard (inputs) {
   .then(data => {
     addGalleryCardItem (data)
     newCardPopup.close();
-    formValidators["placeform"].toggleButtonState();
   })
   .catch ((err) => {
     handleError(err);
@@ -164,7 +161,7 @@ profileEditBtn.addEventListener("click", () => {
   const {name, about } = userInfo.getUserInfo();
   inputName.value  = name;
   inputAboutMe.value  = about;
-  profilePopup.open();
+  profilePopup.open(formValidators["profileform"].resetValidation());
 });
 
 /**
