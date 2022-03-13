@@ -5,6 +5,7 @@ export default class PopupWithForm  extends Popup {
             this._handleFormSubmit  = handleFormSubmit;
             this._formElemet        = this._popup.querySelector(".popup__form");
             this._inputsArr         = this._formElemet.querySelectorAll(".popup__input");
+            this._btnEl             = this._formElemet.querySelector(".popup__submit-btn");
             this._inputValues       = {};
         }
 
@@ -41,13 +42,12 @@ export default class PopupWithForm  extends Popup {
         /**
          * change button text to ..saving until process ends
          */
-        renderLoading(isLoading, btnSelector) {
-            const btnEl = document.querySelector(btnSelector);
+        renderLoading(isLoading) {
             if(isLoading) {
-            btnEl.textContent = "...Saving"; 
+                this._btnEl .textContent = "Saving..."; 
             }
             else {
-            btnEl.textContent = "Save"; 
+                this._btnEl .textContent = "Save"; 
             }
         }
 

@@ -24,6 +24,11 @@ export default class Card {
     getId() {
       return this._id;
     }
+    deleteCard() {
+      this._element.remove();
+      this._element = null;
+    }
+
 
     generateCard() {
       this._itemImgEl.src = this._img;

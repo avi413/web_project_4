@@ -26,7 +26,10 @@ const userInfo            = new UserInfo(".profile__name", ".profile__about-me",
 
 const formValidators = {};
 
-avatarEditBtn.addEventListener("click",  () => {editAvatarPopup.open(formValidators["avatarform"].resetValidation())});
+avatarEditBtn.addEventListener("click",  () => {
+  formValidators["avatarform"].resetValidation();
+  editAvatarPopup.open();
+});
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -56,17 +59,17 @@ api.init()
  * handle edit pofile avatar image
  */
 function handleEditAvatar (inputs) {
-  editAvatarPopup.renderLoading(true, ".popup__submit-btn_place_avatar");
+  editAvatarPopup.renderLoading(true);
   api.editProfileAvatar(inputs.avatarImageLink)
-  .then (() => {
-    userInfo.setUserAvatar({avatar: inputs.avatarImageLink})
+  .then ((userData) => {
+    userInfo.setUserAvatar(userData )
     editAvatarPopup.close();
   })
   .catch ((err) => {
     handleError(err);
   })
   .finally(() =>{
-    editAvatarPopup.renderLoading(false, ".popup__submit-btn_place_avatar");
+    editAvatarPopup.renderLoading(false);
   })
 }
 
@@ -74,25 +77,28 @@ function handleEditAvatar (inputs) {
  * edit user profile data
  */
  function handleProfileFormSubmit (inputs) {
-  profilePopup.renderLoading(true, ".popup__submit-btn_place_profile");
+  profilePopup.renderLoading(true);
 
   api.editProfile({name: inputs.profileName, about: inputs.profileAboutMe})
-  .then (() => {
-    userInfo.setUserInfo({name: inputs.profileName, about: inputs.profileAboutMe})
+  .then ((userData) => {
+    userInfo.setUserInfo(userData)
     profilePopup.close();
   })
   .catch ((err) => {
     console.log(err);
   })
   .finally(() =>{
-    profilePopup.renderLoading(false, ".popup__submit-btn_place_profile");
+    profilePopup.renderLoading(false);
   })
 }
 
 /**
  * add new card item to gallery
  */
- opeNewCardPopupBtn.addEventListener("click", () => newCardPopup.open( formValidators["placeform"].resetValidation()));
+ opeNewCardPopupBtn.addEventListener("click", () => {
+    formValidators["placeform"].resetValidation();
+    newCardPopup.open();
+  });
 
  function createCard (item) {
   const card = new Card(
@@ -110,7 +116,7 @@ function  addGalleryCardItem (item) {
 }
 
 function handleCreateNewCard (inputs) {
-  newCardPopup.renderLoading(true, ".popup__submit-btn_place_new-card");
+  newCardPopup.renderLoading(true);
 
   api.createNewCard(inputs.placeImageLink,inputs.placeName)
   .then(data => {
@@ -121,7 +127,7 @@ function handleCreateNewCard (inputs) {
     handleError(err);
   })
   .finally(() =>{
-    newCardPopup.renderLoading(false, ".popup__submit-btn_place_new-card");
+    newCardPopup.renderLoading(false);
   })
 }
 
@@ -129,10 +135,9 @@ function handleCreateNewCard (inputs) {
  * delete card item from gallery
  */
  function handleDelete(card) {
-  api.deleteCard(card._id)
+  api.deleteCard(card.getId())
   .then(() =>{
-    card._element.remove();
-    card._element = null;
+    card.deleteCard();
     popupConfirm.close();
   })
   .catch(err => {
@@ -161,7 +166,8 @@ profileEditBtn.addEventListener("click", () => {
   const {name, about } = userInfo.getUserInfo();
   inputName.value  = name;
   inputAboutMe.value  = about;
-  profilePopup.open(formValidators["profileform"].resetValidation());
+  formValidators["profileform"].resetValidation();
+  profilePopup.open();
 });
 
 /**
